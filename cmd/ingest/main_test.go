@@ -151,6 +151,37 @@ func TestMerge(t *testing.T) {
 	}
 }
 
+func TestInterleave(t *testing.T) {
+	ps := func(ids ...string) []passage.Passage {
+		out := make([]passage.Passage, len(ids))
+		for i, id := range ids {
+			out[i] = passage.Passage{ID: id}
+		}
+		return out
+	}
+	tests := []struct {
+		name string
+		a, b []passage.Passage
+		want string
+	}{
+		{name: "spreads b evenly", a: ps("a1", "a2", "a3", "a4", "a5", "a6"), b: ps("b1", "b2"), want: "a1 a2 b1 a3 a4 a5 b2 a6"},
+		{name: "equal lengths alternate", a: ps("a1", "a2"), b: ps("b1", "b2"), want: "a1 b1 a2 b2"},
+		{name: "empty b", a: ps("a1", "a2"), want: "a1 a2"},
+		{name: "empty a", b: ps("b1", "b2"), want: "b1 b2"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var ids []string
+			for _, p := range interleave(tt.a, tt.b) {
+				ids = append(ids, p.ID)
+			}
+			if got := strings.Join(ids, " "); got != tt.want {
+				t.Errorf("interleave() = %s, want %s", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestParseEnchiridion(t *testing.T) {
 	in := "                            THE ENCHIRIDION\n\n\n" +
 		"                                   I\n\nThere are things within our power.\n\nSecond paragraph.\n\n\n" +

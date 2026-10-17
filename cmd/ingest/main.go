@@ -245,6 +245,23 @@ func parseEnchiridion(body string) ([]passage.Passage, error) {
 	return toPassages(units, "Epictetus", "Enchiridion", "enchiridion"), nil
 }
 
+// interleave spreads b evenly through a, keeping each in its own order. The j-th b lands
+// after (j+½)·len(a)/len(b) of a, so neither work bunches up at the start or end.
+func interleave(a, b []passage.Passage) []passage.Passage {
+	out := make([]passage.Passage, 0, len(a)+len(b))
+	i, j := 0, 0
+	for i < len(a) || j < len(b) {
+		if j < len(b) && (i == len(a) || (2*j+1)*len(a) <= 2*i*len(b)) {
+			out = append(out, b[j])
+			j++
+		} else {
+			out = append(out, a[i])
+			i++
+		}
+	}
+	return out
+}
+
 func histogram(ps []passage.Passage) string {
 	edges := []int{25, 50, 100, 150, 200, 300, 500, 1000}
 	counts := make([]int, len(edges)+1)
@@ -298,7 +315,7 @@ func run(ctx context.Context, out string) error {
 	if err != nil {
 		return fmt.Errorf("enchiridion: %w", err)
 	}
-	ps := append(meditations, enchiridion...)
+	ps := interleave(meditations, enchiridion)
 
 	b, err := json.Marshal(ps, jsontext.WithIndent("  "))
 	if err != nil {

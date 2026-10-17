@@ -9,9 +9,9 @@ Passages come from two US public-domain texts on Project Gutenberg, embedded in 
 - Epictetus, _Enchiridion_, T. W. Higginson translation ([#45109](https://www.gutenberg.org/ebooks/45109)): 51 chapters
   (this edition merges the usual chapters 52–53 into LI)
 
-The Lambda posts `passages[days since 2026-10-19 % N]`, in file order: Meditations 1.1 → 12.36, then Enchiridion 1 → 51,
-then it starts over. No state, no repeats within a cycle. Passages longer than Discord's 2000-character limit are split
-across several posts.
+The Lambda posts `passages[days since 2026-10-19 % N]`. Ingest interleaves the two works evenly, about one Enchiridion
+chapter every 10–11 days, with each work still in its own order; after all 527 it starts over. No state, no repeats
+within a cycle. Passages longer than Discord's 2000-character limit are split across several posts.
 
 # Setup
 

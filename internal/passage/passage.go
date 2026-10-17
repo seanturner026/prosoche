@@ -51,7 +51,7 @@ func Load() ([]Passage, error) {
 	return ps, nil
 }
 
-// ForDate walks ps in file order, one per calendar day of t, wrapping after the last.
+// ForDate walks ps in order, one per calendar day of t, wrapping after the last.
 func ForDate(ps []Passage, t time.Time) Passage {
 	day := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.UTC)
 	days := int(day.Sub(Start).Hours() / 24)
