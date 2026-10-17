@@ -2071,58 +2071,14 @@
     "word_count": 33
   },
   {
-    "id": "meditations-7.38",
+    "id": "meditations-7.38-43",
     "author": "Marcus Aurelius",
     "work": "Meditations",
     "book": 7,
     "section": 38,
-    "text": "It is not right to vex ourselves at things, For they care nought about it.",
-    "word_count": 15
-  },
-  {
-    "id": "meditations-7.39",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 7,
-    "section": 39,
-    "text": "To the immortal gods and us give joy.",
-    "word_count": 8
-  },
-  {
-    "id": "meditations-7.40",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 7,
-    "section": 40,
-    "text": "Life must be reaped like the ripe ears of corn. One man is born; another dies.",
-    "word_count": 16
-  },
-  {
-    "id": "meditations-7.41",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 7,
-    "section": 41,
-    "text": "If gods care not for me and my children, There is a reason for it.",
-    "word_count": 15
-  },
-  {
-    "id": "meditations-7.42",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 7,
-    "section": 42,
-    "text": "For the good is with me, and the just.",
-    "word_count": 9
-  },
-  {
-    "id": "meditations-7.43",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 7,
-    "section": 43,
-    "text": "No joining others in their wailing, no violent emotion.",
-    "word_count": 9
+    "section_end": 43,
+    "text": "It is not right to vex ourselves at things, For they care nought about it.\n\nTo the immortal gods and us give joy.\n\nLife must be reaped like the ripe ears of corn. One man is born; another dies.\n\nIf gods care not for me and my children, There is a reason for it.\n\nFor the good is with me, and the just.\n\nNo joining others in their wailing, no violent emotion.",
+    "word_count": 72
   },
   {
     "id": "meditations-7.44",
@@ -3943,31 +3899,14 @@
     "word_count": 33
   },
   {
-    "id": "meditations-11.30",
+    "id": "meditations-11.30-32",
     "author": "Marcus Aurelius",
     "work": "Meditations",
     "book": 11,
     "section": 30,
-    "text": "A slave thou art: free speech is not for thee.",
-    "word_count": 10
-  },
-  {
-    "id": "meditations-11.31",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 11,
-    "section": 31,
-    "text": "And my heart laughed within. Odyssey, ix. 413.",
-    "word_count": 8
-  },
-  {
-    "id": "meditations-11.32",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 11,
-    "section": 32,
-    "text": "And virtue they will curse, speaking harsh words. HESIOD, Works and Days, 184.",
-    "word_count": 13
+    "section_end": 32,
+    "text": "A slave thou art: free speech is not for thee.\n\nAnd my heart laughed within. Odyssey, ix. 413.\n\nAnd virtue they will curse, speaking harsh words. HESIOD, Works and Days, 184.",
+    "word_count": 31
   },
   {
     "id": "meditations-11.33",
@@ -4006,22 +3945,14 @@
     "word_count": 9
   },
   {
-    "id": "meditations-11.37",
+    "id": "meditations-11.37-38",
     "author": "Marcus Aurelius",
     "work": "Meditations",
     "book": 11,
     "section": 37,
-    "text": "Epictetus also said, a man must discover an art [or rules] with respect to giving his assent; and in respect to his movements he must be careful that they be made with regard to circumstances, that they be consistent with social interests, that they have regard to the value of the object; and as to sensual desire, he should altogether keep away from it; and as to avoidance [aversion], he should not show it with respect to any of the things which are not in our power.",
-    "word_count": 87
-  },
-  {
-    "id": "meditations-11.38",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 11,
-    "section": 38,
-    "text": "The dispute then, he said, is not about any common matter, but about being mad or not.",
-    "word_count": 17
+    "section_end": 38,
+    "text": "Epictetus also said, a man must discover an art [or rules] with respect to giving his assent; and in respect to his movements he must be careful that they be made with regard to circumstances, that they be consistent with social interests, that they have regard to the value of the object; and as to sensual desire, he should altogether keep away from it; and as to avoidance [aversion], he should not show it with respect to any of the things which are not in our power.\n\nThe dispute then, he said, is not about any common matter, but about being mad or not.",
+    "word_count": 104
   },
   {
     "id": "meditations-11.39",

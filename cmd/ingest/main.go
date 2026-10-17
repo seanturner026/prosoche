@@ -137,8 +137,12 @@ type unit struct {
 // span is an inclusive range of sections in one book that only read well as one passage.
 type span struct{ book, from, to int }
 
-// Book 1 opens with a list of family members whose verb, "[I learned]", appears only in 1.1.
-var meditationsMerges = []span{{book: 1, from: 1, to: 4}}
+var meditationsMerges = []span{
+	{book: 1, from: 1, to: 4},    // family list; its verb "[I learned]" appears only in 1.1
+	{book: 7, from: 38, to: 43},  // run of one-line quotations from the poets
+	{book: 11, from: 30, to: 32}, // more quotations, two ending in Long's source citation
+	{book: 11, from: 37, to: 38}, // "he said" in 11.38 is the Epictetus named in 11.37
+}
 
 // merge folds each span's sections into the unit for its first section.
 func merge(units []unit, spans []span) []unit {

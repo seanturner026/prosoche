@@ -70,7 +70,7 @@ and footnotes, as well as footnote markers (`[A]`, `[1]`, `+`) and Long's cross-
 splits sections by number, writes `internal/passage/passages.json`, and prints a word-count histogram. Long's bracketed
 supplied words like `[I learned]` are part of the translation and are kept.
 
-Sections that only make sense together are merged via `meditationsMerges` in `cmd/ingest`. Currently that's only
-Meditations 1.1–4, the family list whose verb appears only in 1.1.
+Sections that only make sense together are merged via `meditationsMerges` in `cmd/ingest`: Meditations 1.1–4, 7.38–43,
+11.30–32, and 11.37–38.
 
 Rebuilding with a different passage count shifts which passage lands on which date.
