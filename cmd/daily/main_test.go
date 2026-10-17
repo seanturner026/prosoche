@@ -2,14 +2,13 @@ package main
 
 import (
 	"context"
+	"encoding/json/v2"
 	"errors"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
-
-	"github.com/go-json-experiment/json"
 
 	"github.com/seanturner026/prosoche/internal/passage"
 )

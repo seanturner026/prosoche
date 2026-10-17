@@ -3,11 +3,10 @@ package passage
 
 import (
 	_ "embed"
+	"encoding/json/v2"
 	"fmt"
 	"strconv"
 	"time"
-
-	"github.com/go-json-experiment/json"
 )
 
 // Passage is one numbered section of a work, as written to passages.json by cmd/ingest.

@@ -1,12 +1,11 @@
 module github.com/seanturner026/prosoche
 
-go 1.26.0
+go 1.27
 
 require (
 	github.com/aws/aws-lambda-go v1.47.0
 	github.com/aws/aws-sdk-go-v2/config v1.28.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.0
-	github.com/go-json-experiment/json v0.0.0-20260214004413-d219187c3433
 )
 
 require (

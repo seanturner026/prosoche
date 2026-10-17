@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json/v2"
 	"flag"
 	"fmt"
 	"io"
@@ -15,7 +16,6 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
-	"github.com/go-json-experiment/json"
 
 	"github.com/seanturner026/prosoche/internal/passage"
 )
@@ -92,19 +92,16 @@ func split(s string, limit int) []string {
 	return append(chunks, s)
 }
 
-// getDiscordSender posts to DISCORD_CHANNEL_ID. The token comes from DISCORD_BOT_TOKEN for
-// local dev, otherwise the bot_token key of the JSON blob at SSM_PARAMETER (captain-hook's).
+// getDiscordSender posts to DISCORD_CHANNEL_ID using the bot_token key of the JSON blob at
+// SSM_PARAMETER (captain-hook's).
 func getDiscordSender(ctx context.Context) (discordSender, error) {
 	channelID := os.Getenv("DISCORD_CHANNEL_ID")
 	if channelID == "" {
 		return discordSender{}, fmt.Errorf("DISCORD_CHANNEL_ID must be set")
 	}
-	token := os.Getenv("DISCORD_BOT_TOKEN")
-	if token == "" {
-		var err error
-		if token, err = getBotToken(ctx); err != nil {
-			return discordSender{}, err
-		}
+	token, err := getBotToken(ctx)
+	if err != nil {
+		return discordSender{}, err
 	}
 	return discordSender{baseURL: discordAPIBase, channelID: channelID, botToken: token}, nil
 }
@@ -112,7 +109,7 @@ func getDiscordSender(ctx context.Context) (discordSender, error) {
 func getBotToken(ctx context.Context) (string, error) {
 	paramName := os.Getenv("SSM_PARAMETER")
 	if paramName == "" {
-		return "", fmt.Errorf("DISCORD_BOT_TOKEN or SSM_PARAMETER must be set")
+		return "", fmt.Errorf("SSM_PARAMETER must be set")
 	}
 	cfg, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
