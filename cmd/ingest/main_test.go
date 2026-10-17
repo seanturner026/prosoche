@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 	"testing"
+
+	"github.com/seanturner026/prosoche/internal/passage"
 )
 
 func TestStripGutenberg(t *testing.T) {
@@ -60,6 +62,7 @@ func TestClean(t *testing.T) {
 		{name: "numeric footnote marker", in: "follow still.[8]", want: "follow still."},
 		{name: "cross reference", in: "a terrible thing (iii. 7; vi.\n23; x. 20).", want: "a terrible thing."},
 		{name: "epictetus reference", in: "exists not yet (Epictetus,\niii. 24).", want: "exists not yet."},
+		{name: "transcriber plus marks", in: "[+ Neither actor+]. spin thy thread + into", want: "[Neither actor]. spin thy thread into"},
 		{name: "greek transliteration", in: "a part [Greek: meros], thou", want: "a part, thou"},
 		{name: "italics and whitespace", in: "  as, _We ought\n  not to lie_;  ", want: "as, We ought not to lie;"},
 		{name: "keeps ordinary parentheses", in: "the man (who is good) acts", want: "the man (who is good) acts"},
@@ -93,13 +96,18 @@ func TestParseMeditations(t *testing.T) {
 	if err != nil {
 		t.Fatalf("parseMeditations() error: %v", err)
 	}
-	if len(ps) != 36 {
-		t.Fatalf("got %d passages, want 36", len(ps))
+	byID := map[string]passage.Passage{}
+	for _, p := range ps {
+		byID[p.ID] = p
+	}
+	// Book 1's sections 1-3 fold into one via meditationsMerges.
+	if len(ps) != 34 {
+		t.Fatalf("got %d passages, want 34", len(ps))
 	}
 
-	got := ps[3*11+1]
-	if got.ID != "meditations-12.2" || got.Book != 12 || got.Section != 2 {
-		t.Errorf("passage = %s (book %d section %d), want meditations-12.2", got.ID, got.Book, got.Section)
+	got := byID["meditations-12.2"]
+	if got.Book != 12 || got.Section != 2 {
+		t.Errorf("meditations-12.2 = book %d section %d", got.Book, got.Section)
 	}
 	if want := "Second thought, wrapped.\n\nIts second paragraph."; got.Text != want {
 		t.Errorf("text = %q, want %q", got.Text, want)
@@ -107,15 +115,39 @@ func TestParseMeditations(t *testing.T) {
 	if got.WordCount != 6 {
 		t.Errorf("word_count = %d, want 6", got.WordCount)
 	}
-	if want := "First thought of book 1."; ps[0].Text != want {
-		t.Errorf("unnumbered first section = %q, want %q", ps[0].Text, want)
+	if want := "First thought of book 2."; byID["meditations-2.1"].Text != want {
+		t.Errorf("unnumbered first section = %q, want %q", byID["meditations-2.1"].Text, want)
 	}
-	if want := "Third thought.\n\n5. Not a section heading, since 4 never appeared."; ps[2].Text != want {
-		t.Errorf("out-of-sequence number = %q, want %q", ps[2].Text, want)
+	if want := "Third thought.\n\n5. Not a section heading, since 4 never appeared."; byID["meditations-2.3"].Text != want {
+		t.Errorf("out-of-sequence number = %q, want %q", byID["meditations-2.3"].Text, want)
+	}
+	if merged := byID["meditations-1.1-4"]; merged.SectionEnd != 4 || !strings.HasPrefix(merged.Text, "First thought of book 1.\n\nSecond thought") {
+		t.Errorf("merged book 1 = %+v", merged)
 	}
 
 	if _, err := parseMeditations(meditationsFixture(11)); err == nil {
 		t.Error("parseMeditations() with 11 books: want error")
+	}
+}
+
+func TestMerge(t *testing.T) {
+	units := []unit{
+		{book: 1, section: 1, paras: []string{"a"}},
+		{book: 1, section: 2, paras: []string{"b"}},
+		{book: 1, section: 3, paras: []string{"c"}},
+		{book: 2, section: 1, paras: []string{"d"}},
+		{book: 2, section: 2, paras: []string{"e"}},
+	}
+	got := merge(units, []span{{book: 1, from: 1, to: 2}})
+
+	want := []unit{
+		{book: 1, section: 1, end: 2, paras: []string{"a", "b"}},
+		{book: 1, section: 3, paras: []string{"c"}},
+		{book: 2, section: 1, paras: []string{"d"}},
+		{book: 2, section: 2, paras: []string{"e"}},
+	}
+	if fmt.Sprint(got) != fmt.Sprint(want) {
+		t.Errorf("merge() = %v, want %v", got, want)
 	}
 }
 

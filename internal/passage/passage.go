@@ -4,6 +4,7 @@ package passage
 import (
 	_ "embed"
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/go-json-experiment/json"
@@ -11,21 +12,26 @@ import (
 
 // Passage is one numbered section of a work, as written to passages.json by cmd/ingest.
 type Passage struct {
-	ID        string `json:"id"`
-	Author    string `json:"author"`
-	Work      string `json:"work"`
-	Book      int    `json:"book,omitzero"`
-	Section   int    `json:"section"`
-	Text      string `json:"text"`
-	WordCount int    `json:"word_count"`
+	ID         string `json:"id"`
+	Author     string `json:"author"`
+	Work       string `json:"work"`
+	Book       int    `json:"book,omitzero"`
+	Section    int    `json:"section"`
+	SectionEnd int    `json:"section_end,omitzero"` // set when spanning sections, e.g. 1.1–4
+	Text       string `json:"text"`
+	WordCount  int    `json:"word_count"`
 }
 
-// Ref is the human citation, e.g. "4.3" for Meditations or "5" for the Enchiridion.
+// Ref is the human citation, e.g. "4.3" or "1.1–4" for Meditations, "5" for the Enchiridion.
 func (p Passage) Ref() string {
-	if p.Book == 0 {
-		return fmt.Sprintf("%d", p.Section)
+	ref := strconv.Itoa(p.Section)
+	if p.SectionEnd != 0 {
+		ref += "–" + strconv.Itoa(p.SectionEnd)
 	}
-	return fmt.Sprintf("%d.%d", p.Book, p.Section)
+	if p.Book != 0 {
+		ref = strconv.Itoa(p.Book) + "." + ref
+	}
+	return ref
 }
 
 // Start is day zero of the reading cycle.

@@ -26,12 +26,15 @@ func TestLoad(t *testing.T) {
 		ids[p.ID] = true
 		switch p.Work {
 		case "Meditations":
-			books[p.Book]++
+			books[p.Book] += max(p.SectionEnd-p.Section, 0) + 1
 		case "Enchiridion":
 			chapters++
 		}
 	}
 
+	if !ids["meditations-1.1-4"] {
+		t.Error("missing merged passage meditations-1.1-4")
+	}
 	if len(books) != 12 {
 		t.Errorf("got %d Meditations books, want 12", len(books))
 	}
@@ -44,6 +47,25 @@ func TestLoad(t *testing.T) {
 	// Higginson's edition folds the usual chapters 52-53 into LI.
 	if chapters != 51 {
 		t.Errorf("got %d Enchiridion chapters, want 51", chapters)
+	}
+}
+
+func TestRef(t *testing.T) {
+	tests := []struct {
+		name string
+		p    passage.Passage
+		want string
+	}{
+		{name: "book and section", p: passage.Passage{Book: 4, Section: 3}, want: "4.3"},
+		{name: "section range", p: passage.Passage{Book: 1, Section: 1, SectionEnd: 4}, want: "1.1–4"},
+		{name: "chapter only", p: passage.Passage{Section: 5}, want: "5"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.p.Ref(); got != tt.want {
+				t.Errorf("Ref() = %q, want %q", got, tt.want)
+			}
+		})
 	}
 }
 

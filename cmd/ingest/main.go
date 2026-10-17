@@ -30,10 +30,10 @@ var (
 	sectionRe   = regexp.MustCompile(`^(\d+)\.\s+`)
 	romanRe     = regexp.MustCompile(`^([IVXL]+)\.?(?:\[\d+\])?$`)
 
-	// Editorial apparatus: footnote markers ([A], [1]), Greek transliterations, and Long's
+	// Editorial apparatus: footnote markers ([A], [1], +), Greek transliterations, and Long's
 	// cross-references like "(iii. 7; vi. 23)" or "(Epictetus, iii. 24)".
 	noiseRes = []*regexp.Regexp{
-		regexp.MustCompile(`\[[A-Z]\]|\[\d+\]`),
+		regexp.MustCompile(`\[[A-Z]\]|\[\d+\]|\+`),
 		regexp.MustCompile(`\s*\[Greek:[^\]]*\]`),
 		regexp.MustCompile(`\s*\((?:See\s+|Epictetus,\s+)?[ivxl]+\.\s+[^()]*\d[^()]*\)`),
 	}
@@ -125,12 +125,40 @@ func clean(p string) string {
 		p = re.ReplaceAllString(p, "")
 	}
 	p = strings.ReplaceAll(p, "_", "")
-	return strings.TrimSpace(whitespaceRe.ReplaceAllString(p, " "))
+	p = whitespaceRe.ReplaceAllString(p, " ")
+	return strings.TrimSpace(strings.ReplaceAll(p, "[ ", "["))
 }
 
 type unit struct {
-	book, section int
-	paras         []string
+	book, section, end int
+	paras              []string
+}
+
+// span is an inclusive range of sections in one book that only read well as one passage.
+type span struct{ book, from, to int }
+
+// Book 1 opens with a list of family members whose verb, "[I learned]", appears only in 1.1.
+var meditationsMerges = []span{{book: 1, from: 1, to: 4}}
+
+// merge folds each span's sections into the unit for its first section.
+func merge(units []unit, spans []span) []unit {
+	var out []unit
+	for _, u := range units {
+		if n := len(out); n > 0 {
+			last := &out[n-1]
+			if last.book == u.book && last.section < u.section && u.section <= last.end {
+				last.paras = append(last.paras, u.paras...)
+				continue
+			}
+		}
+		for _, s := range spans {
+			if s.book == u.book && s.from == u.section {
+				u.end = s.to
+			}
+		}
+		out = append(out, u)
+	}
+	return out
 }
 
 func toPassages(units []unit, author, work, slug string) []passage.Passage {
@@ -144,14 +172,15 @@ func toPassages(units []unit, author, work, slug string) []passage.Passage {
 		}
 		text := strings.Join(paras, "\n\n")
 		p := passage.Passage{
-			Author:    author,
-			Work:      work,
-			Book:      u.book,
-			Section:   u.section,
-			Text:      text,
-			WordCount: len(strings.Fields(text)),
+			Author:     author,
+			Work:       work,
+			Book:       u.book,
+			Section:    u.section,
+			SectionEnd: u.end,
+			Text:       text,
+			WordCount:  len(strings.Fields(text)),
 		}
-		p.ID = slug + "-" + p.Ref()
+		p.ID = slug + "-" + strings.ReplaceAll(p.Ref(), "–", "-")
 		ps = append(ps, p)
 	}
 	return ps
@@ -191,7 +220,7 @@ func parseMeditations(body string) ([]passage.Passage, error) {
 	if book != 12 {
 		return nil, fmt.Errorf("meditations: found %d books, want 12", book)
 	}
-	return toPassages(units, "Marcus Aurelius", "Meditations", "meditations"), nil
+	return toPassages(merge(units, meditationsMerges), "Marcus Aurelius", "Meditations", "meditations"), nil
 }
 
 // parseEnchiridion splits Higginson's text on centered roman chapter headings.

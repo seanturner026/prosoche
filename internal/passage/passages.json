@@ -1,39 +1,13 @@
 [
   {
-    "id": "meditations-1.1",
+    "id": "meditations-1.1-4",
     "author": "Marcus Aurelius",
     "work": "Meditations",
     "book": 1,
     "section": 1,
-    "text": "From my grandfather Verus [I learned] good morals and the government of my temper.",
-    "word_count": 14
-  },
-  {
-    "id": "meditations-1.2",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 1,
-    "section": 2,
-    "text": "From the reputation and remembrance of my father, modesty and a manly character.",
-    "word_count": 13
-  },
-  {
-    "id": "meditations-1.3",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 1,
-    "section": 3,
-    "text": "From my mother, piety and beneficence, and abstinence, not only from evil deeds, but even from evil thoughts; and further, simplicity in my way of living, far removed from the habits of the rich.",
-    "word_count": 34
-  },
-  {
-    "id": "meditations-1.4",
-    "author": "Marcus Aurelius",
-    "work": "Meditations",
-    "book": 1,
-    "section": 4,
-    "text": "From my great-grandfather, not to have frequented public schools, and to have had good teachers at home, and to know that on such things a man should spend liberally.",
-    "word_count": 29
+    "section_end": 4,
+    "text": "From my grandfather Verus [I learned] good morals and the government of my temper.\n\nFrom the reputation and remembrance of my father, modesty and a manly character.\n\nFrom my mother, piety and beneficence, and abstinence, not only from evil deeds, but even from evil thoughts; and further, simplicity in my way of living, far removed from the habits of the rich.\n\nFrom my great-grandfather, not to have frequented public schools, and to have had good teachers at home, and to know that on such things a man should spend liberally.",
+    "word_count": 90
   },
   {
     "id": "meditations-1.5",
@@ -77,7 +51,7 @@
     "work": "Meditations",
     "book": 1,
     "section": 9,
-    "text": "From Sextus, a benevolent disposition, and the example of a family governed in a fatherly manner, and the idea of living conformably to nature; and gravity without affectation, and to look carefully after the interests of friends, and to tolerate ignorant persons, and those who form opinions without consideration:+ he had the power of readily accommodating himself to all, so that intercourse with him was more agreeable than any flattery; and at the same time he was most highly venerated by those who associated with him: and he had the faculty both of discovery and ordering, in an intelligent and methodical way, the principles necessary for life; and he never showed anger or any other passion, but was entirely free from passion, and also most affectionate; and he could express approbation without noisy display, and he possessed much knowledge without ostentation.",
+    "text": "From Sextus, a benevolent disposition, and the example of a family governed in a fatherly manner, and the idea of living conformably to nature; and gravity without affectation, and to look carefully after the interests of friends, and to tolerate ignorant persons, and those who form opinions without consideration: he had the power of readily accommodating himself to all, so that intercourse with him was more agreeable than any flattery; and at the same time he was most highly venerated by those who associated with him: and he had the faculty both of discovery and ordering, in an intelligent and methodical way, the principles necessary for life; and he never showed anger or any other passion, but was entirely free from passion, and also most affectionate; and he could express approbation without noisy display, and he possessed much knowledge without ostentation.",
     "word_count": 141
   },
   {
@@ -122,8 +96,8 @@
     "work": "Meditations",
     "book": 1,
     "section": 14,
-    "text": "From my brother Severus, to love my kin, and to love truth, and to love justice; and through him I learned to know Thrasea, Helvidius, Cato, Dion, Brutus; and from him I received the idea of a polity in which there is the same law for all, a polity administered with regard to equal rights and equal freedom of speech, and the idea of a kingly government which respects most of all the freedom of the governed; I learned from him also + consistency and undeviating steadiness in my regard for philosophy; and a disposition to do good, and to give to others readily, and to cherish good hopes, and to believe that I am loved by my friends; and in him I observed no concealment of his opinions with respect to those whom he condemned, and that his friends had no need to conjecture what he wished or did not wish, but it was quite plain.",
-    "word_count": 157
+    "text": "From my brother Severus, to love my kin, and to love truth, and to love justice; and through him I learned to know Thrasea, Helvidius, Cato, Dion, Brutus; and from him I received the idea of a polity in which there is the same law for all, a polity administered with regard to equal rights and equal freedom of speech, and the idea of a kingly government which respects most of all the freedom of the governed; I learned from him also consistency and undeviating steadiness in my regard for philosophy; and a disposition to do good, and to give to others readily, and to cherish good hopes, and to believe that I am loved by my friends; and in him I observed no concealment of his opinions with respect to those whom he condemned, and that his friends had no need to conjecture what he wished or did not wish, but it was quite plain.",
+    "word_count": 156
   },
   {
     "id": "meditations-1.15",
@@ -131,7 +105,7 @@
     "work": "Meditations",
     "book": 1,
     "section": 15,
-    "text": "From Maximus I learned self-government, and not to be led aside by anything; and cheerfulness in all circumstances, as well as in illness; and a just admixture in the moral character of sweetness and dignity, and to do what was set before me without complaining. I observed that everybody believed that he thought as he spoke, and that in all that he did he never had any bad intention; and he never showed amazement and surprise, and was never in a hurry, and never put off doing a thing, nor was perplexed nor dejected, nor did he ever laugh to disguise his vexation, nor, on the other hand, was he ever passionate or suspicious. He was accustomed to do acts of beneficence, and was ready to forgive, and was free from all falsehood; and he presented the appearance of a man who could not be diverted from right, rather than of a man who had been improved. I observed, too, that no man could ever think that he was despised by Maximus, or ever venture to think himself a better man. He had also the art of being humorous in an agreeable way.+",
+    "text": "From Maximus I learned self-government, and not to be led aside by anything; and cheerfulness in all circumstances, as well as in illness; and a just admixture in the moral character of sweetness and dignity, and to do what was set before me without complaining. I observed that everybody believed that he thought as he spoke, and that in all that he did he never had any bad intention; and he never showed amazement and surprise, and was never in a hurry, and never put off doing a thing, nor was perplexed nor dejected, nor did he ever laugh to disguise his vexation, nor, on the other hand, was he ever passionate or suspicious. He was accustomed to do acts of beneficence, and was ready to forgive, and was free from all falsehood; and he presented the appearance of a man who could not be diverted from right, rather than of a man who had been improved. I observed, too, that no man could ever think that he was despised by Maximus, or ever venture to think himself a better man. He had also the art of being humorous in an agreeable way.",
     "word_count": 193
   },
   {
@@ -203,7 +177,7 @@
     "work": "Meditations",
     "book": 2,
     "section": 6,
-    "text": "Do wrong to thyself, do wrong to thyself, my soul; but thou wilt no longer have the opportunity of honoring thyself. Every man's life is sufficient.+ But thine is nearly finished, though thy soul reverences not itself, but places thy felicity in the souls of others.",
+    "text": "Do wrong to thyself, do wrong to thyself, my soul; but thou wilt no longer have the opportunity of honoring thyself. Every man's life is sufficient. But thine is nearly finished, though thy soul reverences not itself, but places thy felicity in the souls of others.",
     "word_count": 46
   },
   {
@@ -257,7 +231,7 @@
     "work": "Meditations",
     "book": 2,
     "section": 12,
-    "text": "How quickly all things disappear,--in the universe the bodies themselves, but in time the remembrance of them. What is the nature of all sensible things, and particularly those which attract with the bait of pleasure or terrify by pain, or are noised abroad by vapory fame; how worthless, and contemptible, and sordid, and perishable, and dead they are,--all this it is the part of the intellectual faculty to observe. To observe too who these are whose opinions and voices give reputation; what death is, and the fact that, if a man looks at it in itself, and by the abstractive power of reflection resolves into their parts all the things which present themselves to the imagination in it, he will then consider it to be nothing else than an operation of nature; and if any one is afraid of an operation of nature, he is a child. This, however, is not only an operation of nature, but it is also a thing which conduces to the purposes of nature. To observe too how man comes near to the Deity, and by what part of him, and when this part of man is so disposed+.",
+    "text": "How quickly all things disappear,--in the universe the bodies themselves, but in time the remembrance of them. What is the nature of all sensible things, and particularly those which attract with the bait of pleasure or terrify by pain, or are noised abroad by vapory fame; how worthless, and contemptible, and sordid, and perishable, and dead they are,--all this it is the part of the intellectual faculty to observe. To observe too who these are whose opinions and voices give reputation; what death is, and the fact that, if a man looks at it in itself, and by the abstractive power of reflection resolves into their parts all the things which present themselves to the imagination in it, he will then consider it to be nothing else than an operation of nature; and if any one is afraid of an operation of nature, he is a child. This, however, is not only an operation of nature, but it is also a thing which conduces to the purposes of nature. To observe too how man comes near to the Deity, and by what part of him, and when this part of man is so disposed.",
     "word_count": 194
   },
   {
@@ -275,7 +249,7 @@
     "work": "Meditations",
     "book": 2,
     "section": 14,
-    "text": "Though thou shouldest be going to live three thousand years and as many times ten thousand years, still remember that no man loses any other life than this which he now lives, nor lives any other than this which he now loses. The longest and shortest are thus brought to the same. For the present is the same to all, though that which perish is not the same;+ and so that which is lost appears to be a mere moment. For a man cannot lose either the past or the future: for what a man has not, how can any one take this from him? These two things then thou must bear in mind; the one, that all things from eternity are of like forms and come round in a circle, and that it makes no difference whether a man shall see the same things during a hundred years, or two hundred, or an infinite time; and the second, that the longest liver and he who will die soonest lose just the same. For the present is the only thing of which a man can be deprived, if it is true that this is the only thing which he has, and that a man cannot lose a thing if he has it not.",
+    "text": "Though thou shouldest be going to live three thousand years and as many times ten thousand years, still remember that no man loses any other life than this which he now lives, nor lives any other than this which he now loses. The longest and shortest are thus brought to the same. For the present is the same to all, though that which perish is not the same; and so that which is lost appears to be a mere moment. For a man cannot lose either the past or the future: for what a man has not, how can any one take this from him? These two things then thou must bear in mind; the one, that all things from eternity are of like forms and come round in a circle, and that it makes no difference whether a man shall see the same things during a hundred years, or two hundred, or an infinite time; and the second, that the longest liver and he who will die soonest lose just the same. For the present is the only thing of which a man can be deprived, if it is true that this is the only thing which he has, and that a man cannot lose a thing if he has it not.",
     "word_count": 213
   },
   {
@@ -329,7 +303,7 @@
     "work": "Meditations",
     "book": 3,
     "section": 3,
-    "text": "Hippocrates, after curing many diseases, himself fell sick and died. The Chaldaei foretold the deaths of many, and then fate caught them too. Alexander and Pompeius, and Caius Caesar, after so often completely destroying whole cities, and in battle cutting to pieces many ten thousands of cavalry and infantry, themselves too at last departed from life. Heraclitus, after so many speculations on the conflagration of the universe, was filled with water internally and died smeared all over with mud. And lice destroyed Democritus; and other lice killed Socrates. What means all this? Thou hast embarked, thou hast made the voyage, thou art come to shore; get out. If indeed to another life, there is no want of gods, not even there; but if to a state without sensation, thou wilt cease to be held by pains and pleasures, and to be a slave to the vessel, which is as much inferior as that which serves it is superior:+ for the one is intelligence and deity; the other is earth and corruption.",
+    "text": "Hippocrates, after curing many diseases, himself fell sick and died. The Chaldaei foretold the deaths of many, and then fate caught them too. Alexander and Pompeius, and Caius Caesar, after so often completely destroying whole cities, and in battle cutting to pieces many ten thousands of cavalry and infantry, themselves too at last departed from life. Heraclitus, after so many speculations on the conflagration of the universe, was filled with water internally and died smeared all over with mud. And lice destroyed Democritus; and other lice killed Socrates. What means all this? Thou hast embarked, thou hast made the voyage, thou art come to shore; get out. If indeed to another life, there is no want of gods, not even there; but if to a state without sensation, thou wilt cease to be held by pains and pleasures, and to be a slave to the vessel, which is as much inferior as that which serves it is superior: for the one is intelligence and deity; the other is earth and corruption.",
     "word_count": 171
   },
   {
@@ -338,7 +312,7 @@
     "work": "Meditations",
     "book": 3,
     "section": 4,
-    "text": "Do not waste the remainder of thy life in thoughts about others, when thou dost not refer thy thoughts to some object of common utility. For thou losest the opportunity of doing something else when thou hast such thoughts as these,--What is such a person doing, and why, and what is he saying, and what is he thinking of, and what is he contriving, and whatever else of the kind makes us wander away from the observation of our own ruling power. We ought then to check in the series of our thoughts everything that is without a purpose and useless, but most of all the over-curious feeling and the malignant; and a man should use himself to think of those things only about which if one should suddenly ask, What hast thou now in thy thoughts? with perfect openness thou mightest immediately answer, This or That; so that from thy words it should be plain that everything in thee is simple and benevolent, and such as befits a social animal, and one that cares not for thoughts about pleasure or sensual enjoyments at all, nor has any rivalry or envy and suspicion, or anything else for which thou wouldst blush if thou shouldst say that thou hadst it in thy mind. For the man who is such, and no longer delays being among the number of the best, is like a priest and minister of the gods, using too the [deity] which is planted within him, which makes the man uncontaminated by pleasure, unharmed by any pain, untouched by any insult, feeling no wrong, a fighter in the noblest fight, one who cannot be overpowered by any passion, dyed deep with justice, accepting with all his soul everything which happens and is assigned to him as his portion; and not often, nor yet without great necessity and for the general interest, imagining what another says, or does, or thinks. For it is only what belongs to himself that he makes the matter for his activity; and he constantly thinks of that which is allotted to himself out of the sum total of things, and he makes his own acts fair, and he is persuaded that his own portion is good. For the lot which is assigned to each man is carried along with him and carries him along with it.+ And he remembers also that every rational animal is his kinsman, and that to care for all men is according to man's nature; and a man should hold on to the opinion not of all, but of those only who confessedly live according to nature. But as to those who live not so, he always bears in mind what kind of men they are both at home and from home, both by night and by day, and what they are, and with what men they live an impure life. Accordingly, he does not value at all the praise which comes from such men, since they are not even satisfied with themselves.",
+    "text": "Do not waste the remainder of thy life in thoughts about others, when thou dost not refer thy thoughts to some object of common utility. For thou losest the opportunity of doing something else when thou hast such thoughts as these,--What is such a person doing, and why, and what is he saying, and what is he thinking of, and what is he contriving, and whatever else of the kind makes us wander away from the observation of our own ruling power. We ought then to check in the series of our thoughts everything that is without a purpose and useless, but most of all the over-curious feeling and the malignant; and a man should use himself to think of those things only about which if one should suddenly ask, What hast thou now in thy thoughts? with perfect openness thou mightest immediately answer, This or That; so that from thy words it should be plain that everything in thee is simple and benevolent, and such as befits a social animal, and one that cares not for thoughts about pleasure or sensual enjoyments at all, nor has any rivalry or envy and suspicion, or anything else for which thou wouldst blush if thou shouldst say that thou hadst it in thy mind. For the man who is such, and no longer delays being among the number of the best, is like a priest and minister of the gods, using too the [deity] which is planted within him, which makes the man uncontaminated by pleasure, unharmed by any pain, untouched by any insult, feeling no wrong, a fighter in the noblest fight, one who cannot be overpowered by any passion, dyed deep with justice, accepting with all his soul everything which happens and is assigned to him as his portion; and not often, nor yet without great necessity and for the general interest, imagining what another says, or does, or thinks. For it is only what belongs to himself that he makes the matter for his activity; and he constantly thinks of that which is allotted to himself out of the sum total of things, and he makes his own acts fair, and he is persuaded that his own portion is good. For the lot which is assigned to each man is carried along with him and carries him along with it. And he remembers also that every rational animal is his kinsman, and that to care for all men is according to man's nature; and a man should hold on to the opinion not of all, but of those only who confessedly live according to nature. But as to those who live not so, he always bears in mind what kind of men they are both at home and from home, both by night and by day, and what they are, and with what men they live an impure life. Accordingly, he does not value at all the praise which comes from such men, since they are not even satisfied with themselves.",
     "word_count": 502
   },
   {
@@ -401,8 +375,8 @@
     "work": "Meditations",
     "book": 3,
     "section": 11,
-    "text": "To the aids which have been mentioned let this one still be added: Make for thyself a definition or description of the thing which is presented to thee, so as to see distinctly what kind of a thing it is in its substance, in its nudity, in its complete entirety, and tell thyself its proper name, and the names of the things of which it has been compounded, and into which it will be resolved. For nothing is so productive of elevation of mind as to be able to examine methodically and truly every object which is presented to thee in life, and always to look at things so as to see at the same time what kind of universe this is, and what kind of use everything performs in it, and what value everything has with reference to the whole, and what with reference to man, who is a citizen of the highest city, of which all other cities are like families; what each thing is, and of what it is composed, and how long it is the nature of this thing to endure which now makes an impression on me, and what virtue I have need of with respect to it, such as gentleness, manliness, truth, fidelity, simplicity, contentment, and the rest. Wherefore, on every occasion a man should say: This comes from god; and this is according to the apportionment + and spinning of the thread of destiny, and such-like coincidence and chance; and this is from one of the same stock, and a kinsman and partner, one who knows not, however, what is according to his nature. But I know; for this reason I behave towards him according to the natural law of fellowship with benevolence and justice. At the same time, however, in things indifferent I attempt to ascertain the value of each.",
-    "word_count": 308
+    "text": "To the aids which have been mentioned let this one still be added: Make for thyself a definition or description of the thing which is presented to thee, so as to see distinctly what kind of a thing it is in its substance, in its nudity, in its complete entirety, and tell thyself its proper name, and the names of the things of which it has been compounded, and into which it will be resolved. For nothing is so productive of elevation of mind as to be able to examine methodically and truly every object which is presented to thee in life, and always to look at things so as to see at the same time what kind of universe this is, and what kind of use everything performs in it, and what value everything has with reference to the whole, and what with reference to man, who is a citizen of the highest city, of which all other cities are like families; what each thing is, and of what it is composed, and how long it is the nature of this thing to endure which now makes an impression on me, and what virtue I have need of with respect to it, such as gentleness, manliness, truth, fidelity, simplicity, contentment, and the rest. Wherefore, on every occasion a man should say: This comes from god; and this is according to the apportionment and spinning of the thread of destiny, and such-like coincidence and chance; and this is from one of the same stock, and a kinsman and partner, one who knows not, however, what is according to his nature. But I know; for this reason I behave towards him according to the natural law of fellowship with benevolence and justice. At the same time, however, in things indifferent I attempt to ascertain the value of each.",
+    "word_count": 307
   },
   {
     "id": "meditations-3.12",
@@ -608,7 +582,7 @@
     "work": "Meditations",
     "book": 4,
     "section": 18,
-    "text": "How much trouble he avoids who does not look to see what his neighbor says or does or thinks, but only to what he does himself, that it may be just and pure; or, as Agathon+ says, look not round at the depraved morals of others, but run straight along the line without deviating from it.",
+    "text": "How much trouble he avoids who does not look to see what his neighbor says or does or thinks, but only to what he does himself, that it may be just and pure; or, as Agathon says, look not round at the depraved morals of others, but run straight along the line without deviating from it.",
     "word_count": 56
   },
   {
@@ -617,8 +591,8 @@
     "work": "Meditations",
     "book": 4,
     "section": 19,
-    "text": "He who has a vehement desire for posthumous fame does not consider that every one of those who remember him will himself also die very soon; then again also they who have succeeded them, until the whole remembrance shall have been extinguished as it is transmitted through men who foolishly admire and perish. But suppose that those who will remember are even immortal, and that the remembrance will be immortal, what then is this to thee? And I say not what is it to the dead, but what is it to the living? What is praise, except + indeed so far as it has + a certain utility? For thou now rejectest unseasonably the gift of nature, clinging to something else ... +.",
-    "word_count": 123
+    "text": "He who has a vehement desire for posthumous fame does not consider that every one of those who remember him will himself also die very soon; then again also they who have succeeded them, until the whole remembrance shall have been extinguished as it is transmitted through men who foolishly admire and perish. But suppose that those who will remember are even immortal, and that the remembrance will be immortal, what then is this to thee? And I say not what is it to the dead, but what is it to the living? What is praise, except indeed so far as it has a certain utility? For thou now rejectest unseasonably the gift of nature, clinging to something else ... .",
+    "word_count": 121
   },
   {
     "id": "meditations-4.20",
@@ -716,8 +690,8 @@
     "work": "Meditations",
     "book": 4,
     "section": 30,
-    "text": "The one is a philosopher without a tunic, and the other without a book: here is another half naked: Bread I have not, he says, and I abide by reason--and I do not get the means of living out of my learning, + and I abide [by my reason].",
-    "word_count": 49
+    "text": "The one is a philosopher without a tunic, and the other without a book: here is another half naked: Bread I have not, he says, and I abide by reason--and I do not get the means of living out of my learning, and I abide [by my reason].",
+    "word_count": 48
   },
   {
     "id": "meditations-4.31",
@@ -752,8 +726,8 @@
     "work": "Meditations",
     "book": 4,
     "section": 34,
-    "text": "Willingly give thyself up to Clotho [one of the fates], allowing her to spin thy thread + into whatever things she pleases.",
-    "word_count": 22
+    "text": "Willingly give thyself up to Clotho [one of the fates], allowing her to spin thy thread into whatever things she pleases.",
+    "word_count": 21
   },
   {
     "id": "meditations-4.35",
@@ -860,8 +834,8 @@
     "work": "Meditations",
     "book": 4,
     "section": 46,
-    "text": "Always remember the saying of Heraclitus, that the death of earth is to become water, and the death of water is to become air, and the death of air is to become fire, and reversely. And think too of him who forgets whither the way leads, and that men quarrel with that with which they are most constantly in communion, the reason which governs the universe; and the things which they daily meet with seem to them strange: and consider that we ought not to act and speak as if we were asleep, for even in sleep we seem to act and speak; and that + we ought not, like children who learn from their parents, simply to act and speak as we have been taught. +",
-    "word_count": 127
+    "text": "Always remember the saying of Heraclitus, that the death of earth is to become water, and the death of water is to become air, and the death of air is to become fire, and reversely. And think too of him who forgets whither the way leads, and that men quarrel with that with which they are most constantly in communion, the reason which governs the universe; and the things which they daily meet with seem to them strange: and consider that we ought not to act and speak as if we were asleep, for even in sleep we seem to act and speak; and that we ought not, like children who learn from their parents, simply to act and speak as we have been taught.",
+    "word_count": 125
   },
   {
     "id": "meditations-4.47",
@@ -896,8 +870,8 @@
     "work": "Meditations",
     "book": 4,
     "section": 50,
-    "text": "It is a vulgar, but still a useful help towards contempt of death, to pass in review those who have tenaciously stuck to life. What more then have they gained than those who have died early? Certainly they lie in their tombs somewhere at last, Cadicianus, Fabius, Julianus, Lepidus, or any one else like them, who have carried out many to be buried, and then were carried out themselves. Altogether the interval is small [between birth and death]; and consider with how much trouble, and in company with what sort of people, and in what a feeble body, this interval is laboriously passed. Do not then consider life a thing of any value. + For look to the immensity of time behind thee, and to the time which is before thee, another boundless space. In this infinity then what is the difference between him who lives three days and him who lives three generations?",
-    "word_count": 154
+    "text": "It is a vulgar, but still a useful help towards contempt of death, to pass in review those who have tenaciously stuck to life. What more then have they gained than those who have died early? Certainly they lie in their tombs somewhere at last, Cadicianus, Fabius, Julianus, Lepidus, or any one else like them, who have carried out many to be buried, and then were carried out themselves. Altogether the interval is small [between birth and death]; and consider with how much trouble, and in company with what sort of people, and in what a feeble body, this interval is laboriously passed. Do not then consider life a thing of any value. For look to the immensity of time behind thee, and to the time which is before thee, another boundless space. In this infinity then what is the difference between him who lives three days and him who lives three generations?",
+    "word_count": 153
   },
   {
     "id": "meditations-4.51",
@@ -905,7 +879,7 @@
     "work": "Meditations",
     "book": 4,
     "section": 51,
-    "text": "Always run to the short way; and the short way is the natural: accordingly say and do everything in conformity with the soundest reason. For such a purpose frees a man from trouble,+ and warfare, and all artifice and ostentatious display.",
+    "text": "Always run to the short way; and the short way is the natural: accordingly say and do everything in conformity with the soundest reason. For such a purpose frees a man from trouble, and warfare, and all artifice and ostentatious display.",
     "word_count": 41
   },
   {
@@ -986,8 +960,8 @@
     "work": "Meditations",
     "book": 5,
     "section": 9,
-    "text": "Be not disgusted, nor discouraged, nor dissatisfied, if thou dost not succeed in doing everything according to right principles, but when thou hast failed, return back again, and be content if the greater part of what thou doest is consistent with man's nature, and love this to which thou returnest; and do not return to philosophy as if she were a master, but act like those who have sore eyes and apply a bit of sponge and egg, or as another applies a plaster, or drenching with water. For thus thou wilt not fail to + obey reason, and thou wilt repose in it. And remember that philosophy requires only things which thy nature requires; but thou wouldst have something else which is not according to nature.--It may be objected, Why, what is more agreeable than this [which I am doing]? But is not this the very reason why pleasure deceives us? And consider if magnanimity, freedom, simplicity, equanimity, piety, are not more agreeable. For what is more agreeable than wisdom itself, when thou thinkest of the security and the happy course of all things which depend on the faculty of understanding and knowledge?",
-    "word_count": 194
+    "text": "Be not disgusted, nor discouraged, nor dissatisfied, if thou dost not succeed in doing everything according to right principles, but when thou hast failed, return back again, and be content if the greater part of what thou doest is consistent with man's nature, and love this to which thou returnest; and do not return to philosophy as if she were a master, but act like those who have sore eyes and apply a bit of sponge and egg, or as another applies a plaster, or drenching with water. For thus thou wilt not fail to obey reason, and thou wilt repose in it. And remember that philosophy requires only things which thy nature requires; but thou wouldst have something else which is not according to nature.--It may be objected, Why, what is more agreeable than this [which I am doing]? But is not this the very reason why pleasure deceives us? And consider if magnanimity, freedom, simplicity, equanimity, piety, are not more agreeable. For what is more agreeable than wisdom itself, when thou thinkest of the security and the happy course of all things which depend on the faculty of understanding and knowledge?",
+    "word_count": 193
   },
   {
     "id": "meditations-5.10",
@@ -1013,7 +987,7 @@
     "work": "Meditations",
     "book": 5,
     "section": 12,
-    "text": "What kind of things those are which appear good to the many, we may learn even from this. For if any man should conceive certain things as being really good, such as prudence, temperance, justice, fortitude, he would not after having first conceived these endure to listen to anything+ which should not be in harmony with what is really good.+ But if a man has first conceived as good the things which appear to the many to be good, he will listen and readily receive as very applicable that which was said by the comic writer. +Thus even the many perceive the difference.+ For were it not so, this saying would not offend and would not be rejected [in the first case], while we receive it when it is said of wealth, and of the means which further luxury and fame, as said fitly and wittily. Go on then and ask if we should value and think those things to be good, to which after their first conception in the mind the words of the comic writer might be aptly applied,--that he who has them, through pure abundance has not a place to ease himself in.",
+    "text": "What kind of things those are which appear good to the many, we may learn even from this. For if any man should conceive certain things as being really good, such as prudence, temperance, justice, fortitude, he would not after having first conceived these endure to listen to anything which should not be in harmony with what is really good. But if a man has first conceived as good the things which appear to the many to be good, he will listen and readily receive as very applicable that which was said by the comic writer. Thus even the many perceive the difference. For were it not so, this saying would not offend and would not be rejected [in the first case], while we receive it when it is said of wealth, and of the means which further luxury and fame, as said fitly and wittily. Go on then and ask if we should value and think those things to be good, to which after their first conception in the mind the words of the comic writer might be aptly applied,--that he who has them, through pure abundance has not a place to ease himself in.",
     "word_count": 196
   },
   {
@@ -1157,8 +1131,8 @@
     "work": "Meditations",
     "book": 5,
     "section": 28,
-    "text": "Art thou angry with him whose armpits stink? art thou angry with him whose mouth smells foul? What good will this anger do thee? He has such a mouth, he has such armpits: it is necessary that such an emanation must come from such things: but the man has reason, it will be said, and he is able, if he takes pains, to discover wherein he offends; I wish thee well of thy discovery. Well then, and thou hast reason: by thy rational faculty stir up his rational faculty; show him his error, admonish him. For if he listens, thou wilt cure him, and there is no need of anger. [+ Neither tragic actor nor whore. +]",
-    "word_count": 117
+    "text": "Art thou angry with him whose armpits stink? art thou angry with him whose mouth smells foul? What good will this anger do thee? He has such a mouth, he has such armpits: it is necessary that such an emanation must come from such things: but the man has reason, it will be said, and he is able, if he takes pains, to discover wherein he offends; I wish thee well of thy discovery. Well then, and thou hast reason: by thy rational faculty stir up his rational faculty; show him his error, admonish him. For if he listens, thou wilt cure him, and there is no need of anger. [Neither tragic actor nor whore. ]",
+    "word_count": 116
   },
   {
     "id": "meditations-5.29",
@@ -1571,8 +1545,8 @@
     "work": "Meditations",
     "book": 6,
     "section": 38,
-    "text": "Frequently consider the connection of all things in the universe and their relation to one another. For in a manner all things are implicated with one another, and all in this way are friendly to one another; for one thing comes in order after another, and this is by virtue of the + active movement and mutual conspiration and the unity of the substance.",
-    "word_count": 64
+    "text": "Frequently consider the connection of all things in the universe and their relation to one another. For in a manner all things are implicated with one another, and all in this way are friendly to one another; for one thing comes in order after another, and this is by virtue of the active movement and mutual conspiration and the unity of the substance.",
+    "word_count": 63
   },
   {
     "id": "meditations-6.39",
@@ -1598,7 +1572,7 @@
     "work": "Meditations",
     "book": 6,
     "section": 41,
-    "text": "Whatever of the things which are not within thy power thou shalt suppose to be good for thee or evil, it must of necessity be that, if such a bad thing befall thee, or the loss of such a good thing, thou wilt not blame the gods, and hate men too, those who are the cause of the misfortune or the loss, or those who are suspected of being likely to be the cause; and indeed we do much injustice because we make a difference between these things [because we do not regard these things as indifferent+]. But if we judge only those things which are in our power to be good or bad, there remains no reason either for finding fault with God or standing in a hostile attitude to man.",
+    "text": "Whatever of the things which are not within thy power thou shalt suppose to be good for thee or evil, it must of necessity be that, if such a bad thing befall thee, or the loss of such a good thing, thou wilt not blame the gods, and hate men too, those who are the cause of the misfortune or the loss, or those who are suspected of being likely to be the cause; and indeed we do much injustice because we make a difference between these things [because we do not regard these things as indifferent]. But if we judge only those things which are in our power to be good or bad, there remains no reason either for finding fault with God or standing in a hostile attitude to man.",
     "word_count": 132
   },
   {
@@ -1679,8 +1653,8 @@
     "work": "Meditations",
     "book": 6,
     "section": 50,
-    "text": "Let us try to persuade them [men]. But act even against their will, when the principles of justice lead that way. If however any man by using force stands in thy way, betake thyself to contentment and tranquillity, and at the same time employ the hindrance towards the exercise of some other virtue; and remember that thy attempt was with a reservation [conditionally], that thou didst not desire to do impossibilities. What then didst thou desire?--Some such effort as this.--But thou attainest thy object, if the things to which thou wast moved are [not] accomplished. +",
-    "word_count": 96
+    "text": "Let us try to persuade them [men]. But act even against their will, when the principles of justice lead that way. If however any man by using force stands in thy way, betake thyself to contentment and tranquillity, and at the same time employ the hindrance towards the exercise of some other virtue; and remember that thy attempt was with a reservation [conditionally], that thou didst not desire to do impossibilities. What then didst thou desire?--Some such effort as this.--But thou attainest thy object, if the things to which thou wast moved are [not] accomplished.",
+    "word_count": 95
   },
   {
     "id": "meditations-6.51",
@@ -1904,7 +1878,7 @@
     "work": "Meditations",
     "book": 7,
     "section": 16,
-    "text": "The ruling faculty does not disturb itself; I mean, does not frighten itself or cause itself pain.+ But if any one else can frighten or pain it, let him do so. For the faculty itself will not by its own opinion turn itself into such ways. Let the body itself take care, if it can, that it suffer nothing, and let it speak, if it suffers. But the soul itself, that which is subject to fear, to pain, which has completely the power of forming an opinion about these things, will suffer nothing, for it will never deviate+ into such a judgment. The leading principle in itself wants nothing, unless it makes a want for itself; and therefore it is both free from perturbation and unimpeded, if it does not disturb and impede itself.",
+    "text": "The ruling faculty does not disturb itself; I mean, does not frighten itself or cause itself pain. But if any one else can frighten or pain it, let him do so. For the faculty itself will not by its own opinion turn itself into such ways. Let the body itself take care, if it can, that it suffer nothing, and let it speak, if it suffers. But the soul itself, that which is subject to fear, to pain, which has completely the power of forming an opinion about these things, will suffer nothing, for it will never deviate into such a judgment. The leading principle in itself wants nothing, unless it makes a want for itself; and therefore it is both free from perturbation and unimpeded, if it does not disturb and impede itself.",
     "word_count": 134
   },
   {
@@ -2039,7 +2013,7 @@
     "work": "Meditations",
     "book": 7,
     "section": 31,
-    "text": "Adorn thyself with simplicity and modesty, and with indifference towards the things which lie between virtue and vice. Love mankind. Follow God. The poet says that law rules all--+ And it is enough to remember that law rules all.+",
+    "text": "Adorn thyself with simplicity and modesty, and with indifference towards the things which lie between virtue and vice. Love mankind. Follow God. The poet says that law rules all-- And it is enough to remember that law rules all.",
     "word_count": 39
   },
   {
@@ -2174,7 +2148,7 @@
     "work": "Meditations",
     "book": 7,
     "section": 46,
-    "text": "But, my good friend, reflect whether that which is noble and good is not something different from saving and being saved; for+ as to a man living such or such a time, at least one who is really a man, consider if this is not---a thing to be dismissed from the thoughts:+ and there must be no love of life: but as to these matters a man must intrust them to the Deity and believe what the women say, that no man can escape his destiny, the next inquiry being how he may best live the time that he has to live.",
+    "text": "But, my good friend, reflect whether that which is noble and good is not something different from saving and being saved; for as to a man living such or such a time, at least one who is really a man, consider if this is not---a thing to be dismissed from the thoughts: and there must be no love of life: but as to these matters a man must intrust them to the Deity and believe what the women say, that no man can escape his destiny, the next inquiry being how he may best live the time that he has to live.",
     "word_count": 102
   },
   {
@@ -2363,7 +2337,7 @@
     "work": "Meditations",
     "book": 7,
     "section": 67,
-    "text": "Nature has not so mingled+ [the intelligence] with the composition of the body, as not to have allowed thee the power of circumscribing thyself and of bringing under subjection to thyself all that is thy own; for it is very possible to be a divine man and to be recognized as such by no one. Always bear this in mind; and another thing too, that very little indeed is necessary for living a happy life. And because thou hast despaired of becoming a dialectician and skilled in the knowledge of nature, do not for this reason renounce the hope of being both free and modest, and social and obedient to God.",
+    "text": "Nature has not so mingled [the intelligence] with the composition of the body, as not to have allowed thee the power of circumscribing thyself and of bringing under subjection to thyself all that is thy own; for it is very possible to be a divine man and to be recognized as such by no one. Always bear this in mind; and another thing too, that very little indeed is necessary for living a happy life. And because thou hast despaired of becoming a dialectician and skilled in the knowledge of nature, do not for this reason renounce the hope of being both free and modest, and social and obedient to God.",
     "word_count": 111
   },
   {
@@ -2750,8 +2724,8 @@
     "work": "Meditations",
     "book": 8,
     "section": 35,
-    "text": "As the nature of the universal has given to every rational being all the other powers that it has, + so we have received from it this power also. For as the universal nature converts and fixes in its predestined place everything which stands in the way and opposes it, and makes such things a part of itself, so also the rational animal is able to make every hindrance its own material, and to use it for such purposes as it may have designed.",
-    "word_count": 84
+    "text": "As the nature of the universal has given to every rational being all the other powers that it has, so we have received from it this power also. For as the universal nature converts and fixes in its predestined place everything which stands in the way and opposes it, and makes such things a part of itself, so also the rational animal is able to make every hindrance its own material, and to use it for such purposes as it may have designed.",
+    "word_count": 83
   },
   {
     "id": "meditations-8.36",
@@ -2777,8 +2751,8 @@
     "work": "Meditations",
     "book": 8,
     "section": 38,
-    "text": "If thou canst see sharp, look and judge wisely, + says the philosopher.",
-    "word_count": 13
+    "text": "If thou canst see sharp, look and judge wisely, says the philosopher.",
+    "word_count": 12
   },
   {
     "id": "meditations-8.39",
@@ -2894,8 +2868,8 @@
     "work": "Meditations",
     "book": 8,
     "section": 51,
-    "text": "Neither in thy actions be sluggish nor in thy conversation without method, nor wandering in thy thoughts, nor let there be in thy soul inward contention nor external effusion, nor in life be so busy as to have no leisure.\n\nSuppose that men kill thee, cut thee in pieces, curse thee. What then can these things do to prevent thy mind from remaining pure, wise, sober, just? For instance, if a man should stand by a limpid pure spring, and curse it, the spring never ceases sending up potable water; and if he should cast clay into it or filth, it will speedily disperse them and wash them out, and will not be at all polluted. How then shalt thou possess a perpetual fountain [and not a mere well]? By forming + thyself hourly to freedom conjoined with contentment, simplicity, and modesty.",
-    "word_count": 142
+    "text": "Neither in thy actions be sluggish nor in thy conversation without method, nor wandering in thy thoughts, nor let there be in thy soul inward contention nor external effusion, nor in life be so busy as to have no leisure.\n\nSuppose that men kill thee, cut thee in pieces, curse thee. What then can these things do to prevent thy mind from remaining pure, wise, sober, just? For instance, if a man should stand by a limpid pure spring, and curse it, the spring never ceases sending up potable water; and if he should cast clay into it or filth, it will speedily disperse them and wash them out, and will not be at all polluted. How then shalt thou possess a perpetual fountain [and not a mere well]? By forming thyself hourly to freedom conjoined with contentment, simplicity, and modesty.",
+    "word_count": 141
   },
   {
     "id": "meditations-8.52",
@@ -3038,7 +3012,7 @@
     "work": "Meditations",
     "book": 9,
     "section": 6,
-    "text": "Thy present opinion founded on understanding, and thy present conduct directed to social good, and thy present disposition of contentment with everything which happens+--that is enough.",
+    "text": "Thy present opinion founded on understanding, and thy present conduct directed to social good, and thy present disposition of contentment with everything which happens--that is enough.",
     "word_count": 26
   },
   {
@@ -3218,8 +3192,8 @@
     "work": "Meditations",
     "book": 9,
     "section": 26,
-    "text": "Thou hast endured infinite troubles through not being contented with thy ruling faculty when it does the things which it is constituted by nature to do. But enough + [of this].",
-    "word_count": 31
+    "text": "Thou hast endured infinite troubles through not being contented with thy ruling faculty when it does the things which it is constituted by nature to do. But enough [of this].",
+    "word_count": 30
   },
   {
     "id": "meditations-9.27",
@@ -3227,7 +3201,7 @@
     "work": "Meditations",
     "book": 9,
     "section": 27,
-    "text": "When another blames thee or hates thee, or when men say about thee anything injurious, approach their poor souls, penetrate within, and see what kind of men they are. Thou wilt discover that there is no reason to take any trouble that these men may have this or that opinion about thee. However, thou must be well disposed towards them, for by nature they are friends. And the gods too aid them in all ways, by dreams, by signs, towards the attainment of those things on which they set a value.+",
+    "text": "When another blames thee or hates thee, or when men say about thee anything injurious, approach their poor souls, penetrate within, and see what kind of men they are. Thou wilt discover that there is no reason to take any trouble that these men may have this or that opinion about thee. However, thou must be well disposed towards them, for by nature they are friends. And the gods too aid them in all ways, by dreams, by signs, towards the attainment of those things on which they set a value.",
     "word_count": 91
   },
   {
@@ -3443,8 +3417,8 @@
     "work": "Meditations",
     "book": 10,
     "section": 9,
-    "text": "Mimi, war, astonishment, torpor, slavery, will daily wipe out those holy principles of thine. + How many things without studying nature dost thou imagine, and how many dost thou neglect? But it is thy duty so to look on and so to do everything, that at the same time the power of dealing with circumstances is perfected, and the contemplative faculty is exercised, and the confidence which comes from the knowledge of each several thing is maintained without showing it, but yet not concealed. For when wilt thou enjoy simplicity, when gravity, and when the knowledge of every several thing, both what it is in substance, and what place it has in the universe, and how long it is formed to exist, and of what things it is compounded, and to whom it can belong, and who are able both to give it and take it away?",
-    "word_count": 147
+    "text": "Mimi, war, astonishment, torpor, slavery, will daily wipe out those holy principles of thine. How many things without studying nature dost thou imagine, and how many dost thou neglect? But it is thy duty so to look on and so to do everything, that at the same time the power of dealing with circumstances is perfected, and the contemplative faculty is exercised, and the confidence which comes from the knowledge of each several thing is maintained without showing it, but yet not concealed. For when wilt thou enjoy simplicity, when gravity, and when the knowledge of every several thing, both what it is in substance, and what place it has in the universe, and how long it is formed to exist, and of what things it is compounded, and to whom it can belong, and who are able both to give it and take it away?",
+    "word_count": 146
   },
   {
     "id": "meditations-10.10",
@@ -3533,8 +3507,8 @@
     "work": "Meditations",
     "book": 10,
     "section": 19,
-    "text": "Consider what men are when they are eating, sleeping, generating, easing themselves, and so forth. Then what kind of men they are when they are imperious + and arrogant, or angry and scolding from their elevated place. But a short time ago to how many they were slaves and for what things; and after a little time consider in what a condition they will be.",
-    "word_count": 65
+    "text": "Consider what men are when they are eating, sleeping, generating, easing themselves, and so forth. Then what kind of men they are when they are imperious and arrogant, or angry and scolding from their elevated place. But a short time ago to how many they were slaves and for what things; and after a little time consider in what a condition they will be.",
+    "word_count": 64
   },
   {
     "id": "meditations-10.20",
@@ -3587,8 +3561,8 @@
     "work": "Meditations",
     "book": 10,
     "section": 25,
-    "text": "He who flies from his master is a runaway; but the law is master, and he who breaks the law is a runaway. And he also who is grieved or angry or afraid, + is dissatisfied because something has been or is or shall be of the things which are appointed by him who rules all things, and he is Law and assigns to every man what is fit. He then who fears or is grieved or is angry is a runaway.",
-    "word_count": 82
+    "text": "He who flies from his master is a runaway; but the law is master, and he who breaks the law is a runaway. And he also who is grieved or angry or afraid, is dissatisfied because something has been or is or shall be of the things which are appointed by him who rules all things, and he is Law and assigns to every man what is fit. He then who fears or is grieved or is angry is a runaway.",
+    "word_count": 81
   },
   {
     "id": "meditations-10.26",
@@ -3641,7 +3615,7 @@
     "work": "Meditations",
     "book": 10,
     "section": 31,
-    "text": "When thou hast seen Satyron the Socratic,+ think of either Eutyches or Hymen, and when thou hast seen Euphrates, think of Eutychion or Silvanus, and when thou hast seen Alciphron think of Tropaeophorus, and when thou hast seen Xenophon, think of Crito or Severus, and when thou hast looked on thyself, think of any other Caesar, and in the case of every one do in like manner. Then let this thought be in thy mind, Where then are those men? Nowhere, or nobody knows where. For thus continuously thou wilt look at human things as smoke and nothing at all; especially if thou reflectest at the same time that what has once changed will never exist again in the infinite duration of time. But thou, in what a brief space of time is thy existence? And why art thou not content to pass through this short time in an orderly way? What matter and opportunity [for thy activity] art thou avoiding? For what else are all these things, except exercises for the reason, when it has viewed carefully and by examination into their nature the things which happen in life? Persevere then until thou shalt have made these things thy own, as the stomach which is strengthened makes all things its own, as the blazing fire makes flame and brightness out of everything that is thrown into it.",
+    "text": "When thou hast seen Satyron the Socratic, think of either Eutyches or Hymen, and when thou hast seen Euphrates, think of Eutychion or Silvanus, and when thou hast seen Alciphron think of Tropaeophorus, and when thou hast seen Xenophon, think of Crito or Severus, and when thou hast looked on thyself, think of any other Caesar, and in the case of every one do in like manner. Then let this thought be in thy mind, Where then are those men? Nowhere, or nobody knows where. For thus continuously thou wilt look at human things as smoke and nothing at all; especially if thou reflectest at the same time that what has once changed will never exist again in the infinite duration of time. But thou, in what a brief space of time is thy existence? And why art thou not content to pass through this short time in an orderly way? What matter and opportunity [for thy activity] art thou avoiding? For what else are all these things, except exercises for the reason, when it has viewed carefully and by examination into their nature the things which happen in life? Persevere then until thou shalt have made these things thy own, as the stomach which is strengthened makes all things its own, as the blazing fire makes flame and brightness out of everything that is thrown into it.",
     "word_count": 228
   },
   {
@@ -3776,7 +3750,7 @@
     "work": "Meditations",
     "book": 11,
     "section": 8,
-    "text": "A branch cut off from the adjacent branch must of necessity be cut off from the whole tree also. So too a man when he is separated from another man has fallen off from the whole social community. Now as to a branch, another cuts it off; but a man by his own act separates himself from his neighbor when he hates him and turns away from him, and he does not know that he has at the same time cut himself off from the whole social system. Yet he has this privilege certainly from Zeus, who framed society, for it is in our power to grow again to that which is near to us, and again to become a part which helps to make up the whole. However, if it often happens, this kind of separation, it makes it difficult for that which detaches itself to be brought to unity and to be restored to its former condition. Finally, the branch, which from the first grew together with the tree, and has continued to have one life with it, is not like that which after being cut off is then ingrafted, for this is something like what the gardeners mean when they say that it grows with the rest of the tree, but+ that it has not the same mind with it.",
+    "text": "A branch cut off from the adjacent branch must of necessity be cut off from the whole tree also. So too a man when he is separated from another man has fallen off from the whole social community. Now as to a branch, another cuts it off; but a man by his own act separates himself from his neighbor when he hates him and turns away from him, and he does not know that he has at the same time cut himself off from the whole social system. Yet he has this privilege certainly from Zeus, who framed society, for it is in our power to grow again to that which is near to us, and again to become a part which helps to make up the whole. However, if it often happens, this kind of separation, it makes it difficult for that which detaches itself to be brought to unity and to be restored to its former condition. Finally, the branch, which from the first grew together with the tree, and has continued to have one life with it, is not like that which after being cut off is then ingrafted, for this is something like what the gardeners mean when they say that it grows with the rest of the tree, but that it has not the same mind with it.",
     "word_count": 223
   },
   {
@@ -3839,7 +3813,7 @@
     "work": "Meditations",
     "book": 11,
     "section": 15,
-    "text": "How unsound and insincere is he who says, I have determined to deal with thee in a fair way!--What are thou doing, man? There is no occasion to give this notice. It will soon show itself by acts. The voice ought to be plainly written on the forehead. Such as a man's character is,+ he immediately shows it in his eyes, just as he who is beloved forthwith reads everything in the eyes of lovers. The man who is honest and good ought to be exactly like a man who smells strong, so that the bystander as soon as he comes near him must smell whether he choose or not. But the affectation of simplicity is like a crooked stick. Nothing is more disgraceful than a wolfish friendship [false friendship]. Avoid this most of all. The good and simple and benevolent show all these things in the eyes, and there is no mistaking.",
+    "text": "How unsound and insincere is he who says, I have determined to deal with thee in a fair way!--What are thou doing, man? There is no occasion to give this notice. It will soon show itself by acts. The voice ought to be plainly written on the forehead. Such as a man's character is, he immediately shows it in his eyes, just as he who is beloved forthwith reads everything in the eyes of lovers. The man who is honest and good ought to be exactly like a man who smells strong, so that the bystander as soon as he comes near him must smell whether he choose or not. But the affectation of simplicity is like a crooked stick. Nothing is more disgraceful than a wolfish friendship [false friendship]. Avoid this most of all. The good and simple and benevolent show all these things in the eyes, and there is no mistaking.",
     "word_count": 153
   },
   {
@@ -3857,8 +3831,8 @@
     "work": "Meditations",
     "book": 11,
     "section": 17,
-    "text": "Consider whence each thing is come, and of what it consists, + and into what it changes, and what kind of a thing it will be when it has changed, and that it will sustain no harm.",
-    "word_count": 37
+    "text": "Consider whence each thing is come, and of what it consists, and into what it changes, and what kind of a thing it will be when it has changed, and that it will sustain no harm.",
+    "word_count": 36
   },
   {
     "id": "meditations-11.18",
@@ -4199,8 +4173,8 @@
     "work": "Meditations",
     "book": 12,
     "section": 16,
-    "text": "When a man has presented the appearance of having done wrong [say], How then do I know if this is a wrongful act? And even if he has done wrong, how do I know that he has not condemned himself? And so this is like tearing his own face. Consider that he who would not have the bad man do wrong, is like the man who would not have the fig-tree to bear juice in the figs, and infants to cry, and the horse to neigh, and whatever else must of necessity be. For what must a man do who has such a character? If then thou art irritable, + cure this man's disposition.",
-    "word_count": 114
+    "text": "When a man has presented the appearance of having done wrong [say], How then do I know if this is a wrongful act? And even if he has done wrong, how do I know that he has not condemned himself? And so this is like tearing his own face. Consider that he who would not have the bad man do wrong, is like the man who would not have the fig-tree to bear juice in the figs, and infants to cry, and the horse to neigh, and whatever else must of necessity be. For what must a man do who has such a character? If then thou art irritable, cure this man's disposition.",
+    "word_count": 113
   },
   {
     "id": "meditations-12.17",

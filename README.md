@@ -66,8 +66,11 @@ just ingest
 ```
 
 This downloads both texts, strips the Gutenberg header, footer, and license, the translators' introductions, indexes,
-and footnotes, as well as footnote markers and Long's cross-references like `(iii. 7)`. It then splits sections by
-number, writes `internal/passage/passages.json`, and prints a word-count histogram. Long's bracketed supplied words
-like `[I learned]` are part of the translation and are kept.
+and footnotes, as well as footnote markers (`[A]`, `[1]`, `+`) and Long's cross-references like `(iii. 7)`. It then
+splits sections by number, writes `internal/passage/passages.json`, and prints a word-count histogram. Long's bracketed
+supplied words like `[I learned]` are part of the translation and are kept.
+
+Sections that only make sense together are merged via `meditationsMerges` in `cmd/ingest`. Currently that's only
+Meditations 1.1–4, the family list whose verb appears only in 1.1.
 
 Rebuilding with a different passage count shifts which passage lands on which date.
