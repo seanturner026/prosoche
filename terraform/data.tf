@@ -1,3 +1,7 @@
+data "aws_caller_identity" "current" {}
+
+data "aws_region" "current" {}
+
 data "archive_file" "lambda" {
   for_each = local.lambdas
 
@@ -22,7 +26,7 @@ data "aws_iam_policy_document" "lambda_ssm" {
   statement {
     effect    = "Allow"
     actions   = ["ssm:GetParameter"]
-    resources = [aws_ssm_parameter.discord.arn]
+    resources = ["arn:aws:ssm:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:parameter${var.discord_ssm_parameter}"]
   }
 }
 

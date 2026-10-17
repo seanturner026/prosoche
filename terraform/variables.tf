@@ -1,13 +1,13 @@
 variable "discord_channel_id" {
   description = "Discord channel ID to post the daily passage — from channel settings"
   type        = string
-  ephemeral   = true
+  default     = "1561019950376681542"
 }
 
-variable "discord_bot_token" {
-  description = "Discord bot token — from discord.dev Bot tab"
+variable "discord_ssm_parameter" {
+  description = "captain-hook's SSM parameter; only its bot_token key is read"
   type        = string
-  ephemeral   = true
+  default     = "/captain-hook-production/discord"
 }
 
 variable "schedules" {
@@ -23,14 +23,4 @@ variable "timezone" {
   description = "IANA time zone for var.schedules"
   type        = string
   default     = "America/New_York"
-}
-
-variable "tier" {
-  description = "Deployment tier — must match the Terraform workspace name"
-  type        = string
-
-  validation {
-    condition     = contains(["staging", "production"], var.tier)
-    error_message = "tier must be 'staging' or 'production'."
-  }
 }

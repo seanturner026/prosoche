@@ -1,12 +1,12 @@
 locals {
-  tier = terraform.workspace
-  name = "prosoche-${local.tier}"
+  name = "prosoche"
 
   lambdas = {
     daily = {
       description = "Posts the day's Stoic passage to Discord"
       env_vars = {
-        SSM_PARAMETER = "/${local.name}/discord"
+        DISCORD_CHANNEL_ID = var.discord_channel_id
+        SSM_PARAMETER      = var.discord_ssm_parameter
       }
     }
   }

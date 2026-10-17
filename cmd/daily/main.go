@@ -92,23 +92,31 @@ func split(s string, limit int) []string {
 	return append(chunks, s)
 }
 
-// getDiscordSender reads DISCORD_CHANNEL_ID and DISCORD_BOT_TOKEN for local dev, otherwise
-// the JSON blob at SSM_PARAMETER.
+// getDiscordSender posts to DISCORD_CHANNEL_ID. The token comes from DISCORD_BOT_TOKEN for
+// local dev, otherwise the bot_token key of the JSON blob at SSM_PARAMETER (captain-hook's).
 func getDiscordSender(ctx context.Context) (discordSender, error) {
-	if id := os.Getenv("DISCORD_CHANNEL_ID"); id != "" {
-		token := os.Getenv("DISCORD_BOT_TOKEN")
-		if token == "" {
-			return discordSender{}, fmt.Errorf("DISCORD_BOT_TOKEN must be set when using DISCORD_CHANNEL_ID")
-		}
-		return discordSender{baseURL: discordAPIBase, channelID: id, botToken: token}, nil
+	channelID := os.Getenv("DISCORD_CHANNEL_ID")
+	if channelID == "" {
+		return discordSender{}, fmt.Errorf("DISCORD_CHANNEL_ID must be set")
 	}
+	token := os.Getenv("DISCORD_BOT_TOKEN")
+	if token == "" {
+		var err error
+		if token, err = getBotToken(ctx); err != nil {
+			return discordSender{}, err
+		}
+	}
+	return discordSender{baseURL: discordAPIBase, channelID: channelID, botToken: token}, nil
+}
+
+func getBotToken(ctx context.Context) (string, error) {
 	paramName := os.Getenv("SSM_PARAMETER")
 	if paramName == "" {
-		return discordSender{}, fmt.Errorf("SSM_PARAMETER must be set")
+		return "", fmt.Errorf("DISCORD_BOT_TOKEN or SSM_PARAMETER must be set")
 	}
 	cfg, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
-		return discordSender{}, fmt.Errorf("load aws config: %w", err)
+		return "", fmt.Errorf("load aws config: %w", err)
 	}
 	withDecryption := true
 	out, err := ssm.NewFromConfig(cfg).GetParameter(ctx, &ssm.GetParameterInput{
@@ -116,21 +124,20 @@ func getDiscordSender(ctx context.Context) (discordSender, error) {
 		WithDecryption: &withDecryption,
 	})
 	if err != nil {
-		return discordSender{}, fmt.Errorf("ssm get parameter %s: %w", paramName, err)
+		return "", fmt.Errorf("ssm get parameter %s: %w", paramName, err)
 	}
 	if out.Parameter == nil || out.Parameter.Value == nil {
-		return discordSender{}, fmt.Errorf("ssm parameter %s has no value", paramName)
+		return "", fmt.Errorf("ssm parameter %s has no value", paramName)
 	}
 	var blob map[string]string
 	if err := json.Unmarshal([]byte(*out.Parameter.Value), &blob); err != nil {
-		return discordSender{}, fmt.Errorf("unmarshal ssm parameter %s: %w", paramName, err)
+		return "", fmt.Errorf("unmarshal ssm parameter %s: %w", paramName, err)
 	}
-	for _, key := range []string{"channel_id", "bot_token"} {
-		if _, ok := blob[key]; !ok {
-			return discordSender{}, fmt.Errorf("key %q not found in ssm parameter %s", key, paramName)
-		}
+	token, ok := blob["bot_token"]
+	if !ok {
+		return "", fmt.Errorf("key %q not found in ssm parameter %s", "bot_token", paramName)
 	}
-	return discordSender{baseURL: discordAPIBase, channelID: blob["channel_id"], botToken: blob["bot_token"]}, nil
+	return token, nil
 }
 
 func message(p passage.Passage) (title, body string) {

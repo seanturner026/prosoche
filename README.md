@@ -4,10 +4,10 @@ Lambda function that posts one Stoic passage to Discord each morning.
 
 Passages come from two US public-domain texts on Project Gutenberg, embedded in the binary:
 
-- Marcus Aurelius, _Meditations_, George Long translation ([#15877](https://www.gutenberg.org/ebooks/15877)): 487 sections
-  across 12 books
-- Epictetus, _Enchiridion_, T. W. Higginson translation ([#45109](https://www.gutenberg.org/ebooks/45109)): 51
-  chapters (this edition merges the usual chapters 52–53 into LI)
+- Marcus Aurelius, _Meditations_, George Long translation ([#15877](https://www.gutenberg.org/ebooks/15877)): 487
+  sections across 12 books
+- Epictetus, _Enchiridion_, T. W. Higginson translation ([#45109](https://www.gutenberg.org/ebooks/45109)): 51 chapters
+  (this edition merges the usual chapters 52–53 into LI)
 
 The Lambda posts `passages[days since 2026-10-19 % N]`, in file order: Meditations 1.1 → 12.36, then Enchiridion 1 → 51,
 then it starts over. No state, no repeats within a cycle. Passages longer than Discord's 2000-character limit are split
@@ -15,29 +15,23 @@ across several posts.
 
 # Setup
 
-1. Create a Discord channel and a bot with the `Send Messages` permission in it (see
-   https://discord.com/developers/applications)
-1. Copy the channel ID and bot token
-1. Create `terraform/var.<tier>.tfvars` (gitignored):
+Reuses captain-hook's Discord bot: the Lambda reads `bot_token` from `/captain-hook-production/discord`, so captain-hook
+must be deployed and its bot must be in the server that has the prosoche channel.
 
-   ```hcl
-   discord_channel_id = "..."
-   discord_bot_token  = "..."
-   tier               = "staging"
-   ```
-
-1. `just workspace staging`
 1. `just d`
 
 # Config
 
-| What                   | Where                                                                                    |
-| ---------------------- | ---------------------------------------------------------------------------------------- |
-| Discord channel, token | SSM SecureString `/prosoche-<tier>/discord` (JSON `channel_id`, `bot_token`), write-only |
-| Send times             | `schedules` variable, default weekdays 7:40 AM, weekends 11:00 AM                        |
-| Time zone              | `timezone` variable, default `America/New_York` (EventBridge Scheduler handles DST)      |
+All in `terraform/variables.tf` defaults; override with a gitignored `terraform/terraform.tfvars` if needed.
 
-To change the send times, override `schedules` in your tfvars:
+| Variable                | Default                                                       |
+| ----------------------- | ------------------------------------------------------------- |
+| `discord_channel_id`    | `1561019950376681542`                                         |
+| `discord_ssm_parameter` | `/captain-hook-production/discord` (only `bot_token` is read) |
+| `schedules`             | weekdays 7:40 AM, weekends 11:00 AM                           |
+| `timezone`              | `America/New_York` (EventBridge Scheduler handles DST)        |
+
+For example, to change the send times:
 
 ```hcl
 schedules = {
@@ -46,13 +40,11 @@ schedules = {
 }
 ```
 
-To rotate Discord credentials, update the tfvars, bump `value_wo_version` in `terraform/ssm.tf`, and `just d`.
-
 # Usage
 
 ```bash
 just preview 2026-10-20   # print that day's message, no network
-just run                  # send today's passage from your machine (needs .env, see .env.template)
+just run                  # send today's passage from your machine (cp .env.template .env)
 just invoke               # trigger the deployed Lambda for a real test send
 just t                    # tests
 ```

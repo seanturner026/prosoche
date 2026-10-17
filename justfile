@@ -6,7 +6,6 @@ set dotenv-path := ".env"
 set quiet
 
 lambdas := "daily"
-tier := `terraform -chdir=terraform workspace show`
 
 # go
 # -------------------------------------------------------------------
@@ -51,14 +50,9 @@ alias d := deploy
 [doc("build all lambdas and deploy with terraform")]
 [group('terraform')]
 deploy: build
-  terraform -chdir=terraform apply -var-file=var.{{ tier }}.tfvars
-
-[doc("select or create a workspace — just workspace staging")]
-[group('terraform')]
-workspace tier:
-  terraform -chdir=terraform workspace select {{ tier }} || terraform -chdir=terraform workspace new {{ tier }}
+  terraform -chdir=terraform apply
 
 [doc("invoke the deployed lambda, sending today's passage")]
 [group('terraform')]
 invoke:
-  aws lambda invoke --function-name prosoche-{{ tier }}-daily /dev/stdout
+  aws lambda invoke --function-name prosoche-daily /dev/stdout
