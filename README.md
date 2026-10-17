@@ -15,8 +15,8 @@ within a cycle. Passages longer than Discord's 2000-character limit are split ac
 
 # Setup
 
-Reuses captain-hook's Discord bot: the Lambda reads `bot_token` from `/captain-hook-production/discord`, so captain-hook
-must be deployed and its bot must be in the server that has the prosoche channel.
+Reuses captain-hook's Discord bot: the Lambda reads `bot_token` from captain-hook's SSM parameter, so captain-hook must
+be deployed and its bot must be in the server that has the prosoche channel.
 
 1. `just d`
 
@@ -24,12 +24,12 @@ must be deployed and its bot must be in the server that has the prosoche channel
 
 All in `terraform/variables.tf` defaults; override with a gitignored `terraform/terraform.tfvars` if needed.
 
-| Variable                | Default                                                       |
-| ----------------------- | ------------------------------------------------------------- |
-| `discord_channel_id`    | `1561019950376681542`                                         |
-| `discord_ssm_parameter` | `/captain-hook-production/discord` (only `bot_token` is read) |
-| `schedules`             | weekdays 7:40 AM, weekends 11:00 AM                           |
-| `timezone`              | `America/New_York` (EventBridge Scheduler handles DST)        |
+| Variable                | Default                                                     |
+| ----------------------- | ----------------------------------------------------------- |
+| `discord_channel_id`    | `1561019950376681542`                                       |
+| `discord_ssm_parameter` | captain-hook's Discord parameter (only `bot_token` is read) |
+| `schedules`             | weekdays 7:40 AM, weekends 11:00 AM                         |
+| `timezone`              | `America/New_York` (EventBridge Scheduler handles DST)      |
 
 For example, to change the send times:
 
