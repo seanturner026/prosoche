@@ -1,0 +1,10 @@
+.env
+
+# Binaries
+bin/*
+!bin/.keep
+
+# Terraform
+*.tfvars
+
+.DS_Store

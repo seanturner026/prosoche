@@ -1,0 +1,12 @@
+# Terraform state and local data
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate
+*.tfstate.*
+
+# Secrets — populate locally, never commit
+.env
+terraform.tfvars
+
