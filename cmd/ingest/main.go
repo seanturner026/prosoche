@@ -28,12 +28,14 @@ var (
 	paragraphRe = regexp.MustCompile(`\n[ \t]*\n`)
 	sectionRe   = regexp.MustCompile(`^(\d+)\.\s+`)
 	romanRe     = regexp.MustCompile(`^([IVXL]+)\.?(?:\[\d+\])?$`)
+	footnoteRe  = regexp.MustCompile(`^\s*\[[A-Z]\] `)
 
-	// Editorial apparatus: footnote markers ([A], [1], +), Greek transliterations, and Long's
+	// Editorial apparatus: footnote markers ([A], [1], +), illustrations, Greek transliterations, and Long's
 	// cross-references like "(iii. 7; vi. 23)" or "(Epictetus, iii. 24)".
 	noiseRes = []*regexp.Regexp{
 		regexp.MustCompile(`\[[A-Z]\]|\[\d+\]|\+`),
-		regexp.MustCompile(`\s*\[Greek:[^\]]*\]`),
+		regexp.MustCompile(`\s*\[?\[(?:Greek|Illustration):[^\]]*\]\]?`),
+		regexp.MustCompile(`\s*\[[^\]]*omitted\s+in\s+the\s+translation\.\]`),
 		regexp.MustCompile(`\s*\((?:See\s+|Epictetus,\s+)?[ivxl]+\.\s+[^()]*\d[^()]*\)`),
 	}
 	whitespaceRe = regexp.MustCompile(`\s+`)
@@ -194,6 +196,7 @@ func toPassages(units []unit, author, work, slug string) []passage.Passage {
 func parseMeditations(body string) ([]passage.Passage, error) {
 	var units []unit
 	book, section := 0, 0
+	inFootnote := false
 	for _, p := range paragraphs(body) {
 		if n, ok := heading(p); ok && n == book+1 {
 			book, section = n, 0
@@ -202,10 +205,13 @@ func parseMeditations(body string) ([]passage.Passage, error) {
 		if book == 0 {
 			continue
 		}
-		// Long's footnotes are the only indented paragraphs.
-		if strings.HasPrefix(p, "    ") {
+		// Footnotes start "[A] "; indented paragraphs right after one continue it. Other
+		// indented paragraphs are quoted verse in the main text.
+		if footnoteRe.MatchString(p) || (inFootnote && strings.HasPrefix(p, "    ")) {
+			inFootnote = true
 			continue
 		}
+		inFootnote = false
 		if m := sectionRe.FindStringSubmatch(p); m != nil {
 			if n, _ := strconv.Atoi(m[1]); n == section+1 {
 				section = n

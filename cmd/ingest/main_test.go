@@ -63,6 +63,9 @@ func TestClean(t *testing.T) {
 		{name: "cross reference", in: "a terrible thing (iii. 7; vi.\n23; x. 20).", want: "a terrible thing."},
 		{name: "epictetus reference", in: "exists not yet (Epictetus,\niii. 24).", want: "exists not yet."},
 		{name: "transcriber plus marks", in: "[+ Neither actor+]. spin thy thread + into", want: "[Neither actor]. spin thy thread into"},
+		{name: "double-bracketed greek", in: "called Extensions [[Greek: aktines]] because", want: "called Extensions because"},
+		{name: "translator note", in: "on a mountain. [The three last words are omitted\nin the translation.]", want: "on a mountain."},
+		{name: "illustration", in: "a shrub?\n\n[Illustration: THE FORUM]", want: "a shrub?"},
 		{name: "greek transliteration", in: "a part [Greek: meros], thou", want: "a part, thou"},
 		{name: "italics and whitespace", in: "  as, _We ought\n  not to lie_;  ", want: "as, We ought not to lie;"},
 		{name: "keeps ordinary parentheses", in: "the man (who is good) acts", want: "the man (who is good) acts"},
@@ -77,16 +80,19 @@ func TestClean(t *testing.T) {
 }
 
 // meditationsFixture mimics Long's layout: roman book headings, an unnumbered first
-// section, indented footnotes, and multi-paragraph sections.
+// section, footnotes (indented or flush), indented verse, and multi-paragraph sections.
 func meditationsFixture(books int) string {
 	romans := []string{"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"}
 	var b strings.Builder
 	for i := range books {
 		fmt.Fprintf(&b, "%s.\n\n\nFirst thought of book %d.[A]\n\n", romans[i], i+1)
 		b.WriteString("    [A] A footnote that\n    spans lines.\n\n")
+		b.WriteString("    Its second paragraph, also indented.\n\n")
+		b.WriteString("[B] A flush footnote.\n\n")
 		b.WriteString("2. Second thought,\nwrapped.\n\nIts second paragraph.\n\n")
 		b.WriteString("3. Third thought (ii. 1).\n\n")
 		b.WriteString("5. Not a section heading, since 4 never appeared.\n\n")
+		b.WriteString("      \"Indented verse in the main text.\"\n\n")
 	}
 	return b.String()
 }
@@ -118,7 +124,7 @@ func TestParseMeditations(t *testing.T) {
 	if want := "First thought of book 2."; byID["meditations-2.1"].Text != want {
 		t.Errorf("unnumbered first section = %q, want %q", byID["meditations-2.1"].Text, want)
 	}
-	if want := "Third thought.\n\n5. Not a section heading, since 4 never appeared."; byID["meditations-2.3"].Text != want {
+	if want := "Third thought.\n\n5. Not a section heading, since 4 never appeared.\n\n\"Indented verse in the main text.\""; byID["meditations-2.3"].Text != want {
 		t.Errorf("out-of-sequence number = %q, want %q", byID["meditations-2.3"].Text, want)
 	}
 	if merged := byID["meditations-1.1-4"]; merged.SectionEnd != 4 || !strings.HasPrefix(merged.Text, "First thought of book 1.\n\nSecond thought") {

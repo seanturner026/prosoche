@@ -13,10 +13,15 @@ The Lambda posts `passages[days since 2026-10-19 % N]`. Ingest interleaves the t
 chapter every 10–11 days, with each work still in its own order; after all 527 it starts over. No state, no repeats
 within a cycle. Passages longer than Discord's 2000-character limit are split across several posts.
 
+Each passage also gets a short plain-English interpretation and a question for the day, posted as a thread reply on the
+passage. These were written once by Claude and live in `internal/passage/interpretations.json`; nothing calls an LLM at
+send time.
+
 # Setup
 
 Reuses captain-hook's Discord bot: the Lambda reads `bot_token` from captain-hook's SSM parameter, so captain-hook must
-be deployed and its bot must be in the server that has the prosoche channel.
+be deployed and its bot must be in the server that has the prosoche channel, with Send Messages, Create Public Threads,
+and Send Messages in Threads permissions there.
 
 1. `just d`
 
@@ -60,7 +65,7 @@ just ingest
 This downloads both texts, strips the Gutenberg header, footer, and license, the translators' introductions, indexes,
 and footnotes, as well as footnote markers (`[A]`, `[1]`, `+`) and Long's cross-references like `(iii. 7)`. It then
 splits sections by number, writes `internal/passage/passages.json`, and prints a word-count histogram. Long's bracketed
-supplied words like `[I learned]` are part of the translation and are kept.
+supplied words like `[I learned]` are part of the translation and are kept, as is quoted verse in the main text.
 
 Sections that only make sense together are merged via `meditationsMerges` in `cmd/ingest`: Meditations 1.1–4, 7.38–43,
 11.30–32, and 11.37–38.

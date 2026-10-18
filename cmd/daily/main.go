@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json/v2"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -25,9 +26,17 @@ const (
 	discordMaxLen  = 2000
 )
 
-// Sender delivers one titled message. Implementations handle their own size limits.
+// Message is one day's post. Reply, when set, is threaded under it.
+type Message struct {
+	Title, Body, Reply string
+}
+
+// ErrReply means the message was delivered but its reply was not.
+var ErrReply = errors.New("reply not delivered")
+
+// Sender delivers a Message. Implementations handle their own size limits.
 type Sender interface {
-	Send(ctx context.Context, title, body string) error
+	Send(ctx context.Context, m Message) error
 }
 
 type discordSender struct {
@@ -36,39 +45,64 @@ type discordSender struct {
 	botToken  string
 }
 
-// Send posts the message to the channel, spreading long passages over several posts.
-func (d discordSender) Send(ctx context.Context, title, body string) error {
-	for _, chunk := range split("**"+title+"**\n\n"+body, discordMaxLen) {
-		if err := d.post(ctx, chunk); err != nil {
+// Send posts the message to the channel, spreading long passages over several posts, then
+// threads the reply under the last post so it sits where reading ends.
+func (d discordSender) Send(ctx context.Context, m Message) error {
+	var lastID string
+	for _, chunk := range split("**"+m.Title+"**\n\n"+m.Body, discordMaxLen) {
+		id, err := d.post(ctx, "/channels/"+d.channelID+"/messages", map[string]string{"content": chunk})
+		if err != nil {
 			return err
+		}
+		lastID = id
+	}
+	if m.Reply == "" {
+		return nil
+	}
+
+	threadID, err := d.post(ctx, "/channels/"+d.channelID+"/messages/"+lastID+"/threads", map[string]string{"name": m.Title})
+	if err != nil {
+		return fmt.Errorf("%w: create thread: %w", ErrReply, err)
+	}
+	for _, chunk := range split(m.Reply, discordMaxLen) {
+		if _, err := d.post(ctx, "/channels/"+threadID+"/messages", map[string]string{"content": chunk}); err != nil {
+			return fmt.Errorf("%w: %w", ErrReply, err)
 		}
 	}
 	return nil
 }
 
-func (d discordSender) post(ctx context.Context, content string) error {
-	body, err := json.Marshal(map[string]string{"content": content})
+// post sends payload to a Discord API path and returns the created object's ID.
+func (d discordSender) post(ctx context.Context, path string, payload map[string]string) (string, error) {
+	body, err := json.Marshal(payload)
 	if err != nil {
-		return err
+		return "", err
 	}
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost,
-		d.baseURL+"/channels/"+d.channelID+"/messages",
-		bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, d.baseURL+path, bytes.NewReader(body))
 	if err != nil {
-		return err
+		return "", err
 	}
 	req.Header.Set("Authorization", "Bot "+d.botToken)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		b, _ := io.ReadAll(resp.Body)
-		return fmt.Errorf("discord api returned status %d: %s", resp.StatusCode, b)
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
 	}
-	return nil
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return "", fmt.Errorf("discord api %s returned status %d: %s", path, resp.StatusCode, b)
+	}
+	var created struct {
+		ID string `json:"id"`
+	}
+	if err := json.Unmarshal(b, &created); err != nil {
+		return "", fmt.Errorf("decode discord response: %w", err)
+	}
+	return created.ID, nil
 }
 
 // split breaks s into chunks of at most limit bytes, preferring paragraph, then sentence,
@@ -137,14 +171,23 @@ func getBotToken(ctx context.Context) (string, error) {
 	return token, nil
 }
 
-func message(p passage.Passage) (title, body string) {
-	return fmt.Sprintf("%s: %s %s", p.Author, p.Work, p.Ref()), p.Text
+func message(p passage.Passage) Message {
+	return Message{
+		Title: fmt.Sprintf("%s: %s %s", p.Author, p.Work, p.Ref()),
+		Body:  p.Text,
+		Reply: p.Interpretation,
+	}
 }
 
 func run(ctx context.Context, ps []passage.Passage, now time.Time, s Sender) error {
 	p := passage.ForDate(ps, now)
-	title, body := message(p)
-	if err := s.Send(ctx, title, body); err != nil {
+	err := s.Send(ctx, message(p))
+	if errors.Is(err, ErrReply) {
+		// Returning an error would make Lambda retry and post the passage again.
+		slog.Error("interpretation not sent", "id", p.ID, "error", err)
+		return nil
+	}
+	if err != nil {
 		return fmt.Errorf("send %s: %w", p.ID, err)
 	}
 	slog.Info("passage sent", "id", p.ID, "words", p.WordCount)
@@ -174,8 +217,11 @@ func main() {
 			slog.Error("parse preview date", "error", err)
 			os.Exit(1)
 		}
-		title, body := message(passage.ForDate(ps, day))
-		fmt.Printf("%s\n\n%s\n", title, body)
+		m := message(passage.ForDate(ps, day))
+		fmt.Printf("%s\n\n%s\n", m.Title, m.Body)
+		if m.Reply != "" {
+			fmt.Printf("\n--- thread ---\n\n%s\n", m.Reply)
+		}
 		return
 	}
 

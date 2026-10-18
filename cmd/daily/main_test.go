@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json/v2"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -54,68 +55,117 @@ func TestSplitAllPassages(t *testing.T) {
 	}
 }
 
+// fakeDiscord records posts by path and answers each with a sequential ID.
+type fakeDiscord struct {
+	posts       map[string][]string
+	failThreads bool
+	n           int
+}
+
+func (f *fakeDiscord) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Header.Get("Authorization") != "Bot tok" || (f.failThreads && strings.HasSuffix(r.URL.Path, "/threads")) {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+	b, _ := io.ReadAll(r.Body)
+	var payload map[string]string
+	_ = json.Unmarshal(b, &payload)
+	f.posts[r.URL.Path] = append(f.posts[r.URL.Path], payload["content"]+payload["name"])
+	f.n++
+	fmt.Fprintf(w, `{"id":"id%d"}`, f.n)
+}
+
 func TestDiscordSend(t *testing.T) {
-	var contents []string
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/channels/chan1/messages" || r.Header.Get("Authorization") != "Bot tok" {
-			w.WriteHeader(http.StatusForbidden)
-			return
-		}
-		b, _ := io.ReadAll(r.Body)
-		var msg struct {
-			Content string `json:"content"`
-		}
-		if err := json.Unmarshal(b, &msg); err != nil {
-			t.Errorf("decode body: %v", err)
-		}
-		contents = append(contents, msg.Content)
-	}))
-	defer srv.Close()
+	long := strings.Repeat("word ", 300) + "\n\n" + strings.Repeat("more ", 300)
 
-	d := discordSender{baseURL: srv.URL, channelID: "chan1", botToken: "tok"}
-	body := strings.Repeat("word ", 300) + "\n\n" + strings.Repeat("more ", 300)
-	if err := d.Send(context.Background(), "Epictetus: Enchiridion 1", body); err != nil {
-		t.Fatalf("Send() error: %v", err)
+	tests := []struct {
+		name        string
+		token       string
+		msg         Message
+		failThreads bool
+		want        map[string][]string
+		wantErr     error
+	}{
+		{
+			name:  "long passage with reply threads under last post",
+			token: "tok",
+			msg:   Message{Title: "Epictetus: Enchiridion 1", Body: long, Reply: "It means this."},
+			want: map[string][]string{
+				"/channels/chan1/messages":             {"**Epictetus: Enchiridion 1**\n\n" + strings.TrimSpace(strings.Repeat("word ", 300)), strings.TrimSpace(strings.Repeat("more ", 300))},
+				"/channels/chan1/messages/id2/threads": {"Epictetus: Enchiridion 1"},
+				"/channels/id3/messages":               {"It means this."},
+			},
+		},
+		{
+			name:  "no reply means no thread",
+			token: "tok",
+			msg:   Message{Title: "t", Body: "b"},
+			want:  map[string][]string{"/channels/chan1/messages": {"**t**\n\nb"}},
+		},
+		{
+			name:        "thread failure is ErrReply",
+			token:       "tok",
+			msg:         Message{Title: "t", Body: "b", Reply: "r"},
+			failThreads: true,
+			want:        map[string][]string{"/channels/chan1/messages": {"**t**\n\nb"}},
+			wantErr:     ErrReply,
+		},
+		{
+			name:  "rejected token is a plain error",
+			token: "wrong",
+			msg:   Message{Title: "t", Body: "b", Reply: "r"},
+			want:  map[string][]string{},
+		},
 	}
-	if len(contents) != 2 {
-		t.Fatalf("got %d posts, want 2", len(contents))
-	}
-	if !strings.HasPrefix(contents[0], "**Epictetus: Enchiridion 1**\n\nword") {
-		t.Errorf("first post = %q, want bold title then passage", contents[0][:40])
-	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			f := &fakeDiscord{posts: map[string][]string{}, failThreads: tt.failThreads}
+			srv := httptest.NewServer(f)
+			defer srv.Close()
 
-	bad := discordSender{baseURL: srv.URL, channelID: "chan1", botToken: "wrong"}
-	if err := bad.Send(context.Background(), "t", "b"); err == nil {
-		t.Error("Send() with rejected token: want error")
+			d := discordSender{baseURL: srv.URL, channelID: "chan1", botToken: tt.token}
+			err := d.Send(context.Background(), tt.msg)
+			switch {
+			case tt.token != "tok":
+				if err == nil || errors.Is(err, ErrReply) {
+					t.Errorf("Send() error = %v, want non-reply error", err)
+				}
+			case !errors.Is(err, tt.wantErr):
+				t.Errorf("Send() error = %v, want %v", err, tt.wantErr)
+			}
+			if fmt.Sprint(f.posts) != fmt.Sprint(tt.want) {
+				t.Errorf("posts = %q, want %q", f.posts, tt.want)
+			}
+		})
 	}
 }
 
 type mockSender struct {
-	title, body string
-	err         error
+	got Message
+	err error
 }
 
-func (m *mockSender) Send(_ context.Context, title, body string) error {
-	m.title, m.body = title, body
+func (m *mockSender) Send(_ context.Context, msg Message) error {
+	m.got = msg
 	return m.err
 }
 
 func TestRun(t *testing.T) {
 	ps := []passage.Passage{
-		{ID: "meditations-4.3", Author: "Marcus Aurelius", Work: "Meditations", Book: 4, Section: 3, Text: "Men seek retreats."},
+		{ID: "meditations-4.3", Author: "Marcus Aurelius", Work: "Meditations", Book: 4, Section: 3, Text: "Men seek retreats.", Interpretation: "Retreat inward."},
 		{ID: "enchiridion-5", Author: "Epictetus", Work: "Enchiridion", Section: 5, Text: "Men are disturbed."},
 	}
 
 	tests := []struct {
-		name      string
-		offset    int
-		err       error
-		wantTitle string
-		wantBody  string
-		wantErr   bool
+		name    string
+		offset  int
+		err     error
+		want    Message
+		wantErr bool
 	}{
-		{name: "meditations header", offset: 0, wantTitle: "Marcus Aurelius: Meditations 4.3", wantBody: "Men seek retreats."},
-		{name: "enchiridion header has no book", offset: 1, wantTitle: "Epictetus: Enchiridion 5", wantBody: "Men are disturbed."},
+		{name: "meditations header and reply", offset: 0, want: Message{Title: "Marcus Aurelius: Meditations 4.3", Body: "Men seek retreats.", Reply: "Retreat inward."}},
+		{name: "enchiridion header has no book", offset: 1, want: Message{Title: "Epictetus: Enchiridion 5", Body: "Men are disturbed."}},
+		{name: "reply failure is not retried", offset: 0, err: fmt.Errorf("%w: boom", ErrReply), want: Message{Title: "Marcus Aurelius: Meditations 4.3", Body: "Men seek retreats.", Reply: "Retreat inward."}},
 		{name: "send failure is returned", offset: 0, err: errors.New("boom"), wantErr: true},
 	}
 	for _, tt := range tests {
@@ -125,11 +175,8 @@ func TestRun(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("run() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if tt.wantErr {
-				return
-			}
-			if m.title != tt.wantTitle || m.body != tt.wantBody {
-				t.Errorf("sent (%q, %q), want (%q, %q)", m.title, m.body, tt.wantTitle, tt.wantBody)
+			if !tt.wantErr && m.got != tt.want {
+				t.Errorf("sent %+v, want %+v", m.got, tt.want)
 			}
 		})
 	}
