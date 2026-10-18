@@ -16,8 +16,11 @@ Keep this file and README.md current: update them in the same change as any code
 ## Layout
 
 - `cmd/ingest` — downloads the Gutenberg texts and writes `internal/passage/passages.json`
-- `internal/passage` — embeds `passages.json`; `ForDate` picks `passages[days since Start % N]`
-- `cmd/daily` — the Lambda; `-preview YYYY-MM-DD` prints instead of sending. Delivery is behind `Sender`.
+- `internal/passage` — embeds `passages.json` and `interpretations.json`, joined by ID in `Load`; `ForDate` picks
+  `passages[days since Start % N]`
+- `cmd/daily` — the Lambda; `-preview YYYY-MM-DD` prints instead of sending. Delivery is behind `Sender`; Discord posts
+  the passage, then threads the interpretation under its last post. A failed thread is logged, not returned, so Lambda
+  doesn't retry and re-post the passage.
 
 ## passages.json
 
@@ -29,6 +32,20 @@ Keep this file and README.md current: update them in the same change as any code
 - Sections that read as fragments alone are merged via `meditationsMerges`; Enchiridion is spread evenly through the
   Meditations by `interleave`.
 - No splitting passages across days. Long passages go out as several Discord posts on the same day (2000-char limit).
+
+## interpretations.json
+
+Written by Claude in-session (no API calls, no Go generator), keyed by passage ID. `TestInterpretations` fails if any
+passage lacks one, if one is over its word limit, or if an ID no longer exists in `passages.json`. After an ingest
+change that adds or renames IDs, write the missing ones and delete stale ones.
+
+Style, so new entries match the rest:
+
+- Three short paragraphs: what the passage says in plain modern English, with any context a reader needs (who people
+  are, what Stoic terms mean); why it matters; then one line starting `Today:` with a concrete action or question.
+- 80–150 words; up to 250 when the passage is over 300 words. Always one Discord post.
+- Faithful to the text. Hedge uncertain attributions; don't invent history. Quote Long/Higginson exactly or paraphrase
+  without quote marks. American spelling.
 
 ## Commands
 

@@ -1,6 +1,9 @@
 package passage_test
 
 import (
+	"encoding/json/v2"
+	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -47,6 +50,42 @@ func TestLoad(t *testing.T) {
 	// Higginson's edition folds the usual chapters 52-53 into LI.
 	if chapters != 51 {
 		t.Errorf("got %d Enchiridion chapters, want 51", chapters)
+	}
+}
+
+func TestInterpretations(t *testing.T) {
+	ps, err := passage.Load()
+	if err != nil {
+		t.Fatalf("Load() error: %v", err)
+	}
+	ids := map[string]bool{}
+	for _, p := range ps {
+		ids[p.ID] = true
+		words := len(strings.Fields(p.Interpretation))
+		limit := 150
+		if p.WordCount > 300 {
+			limit = 250
+		}
+		switch {
+		case words == 0:
+			t.Errorf("%s has no interpretation", p.ID)
+		case words > limit:
+			t.Errorf("%s interpretation is %d words, want <= %d", p.ID, words, limit)
+		}
+	}
+
+	b, err := os.ReadFile("interpretations.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var interps map[string]string
+	if err := json.Unmarshal(b, &interps); err != nil {
+		t.Fatal(err)
+	}
+	for id := range interps {
+		if !ids[id] {
+			t.Errorf("interpretations.json has %s, which is not in passages.json", id)
+		}
 	}
 }
 
