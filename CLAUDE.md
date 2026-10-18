@@ -2,6 +2,8 @@
 
 Lambda that posts one Stoic passage a day to Discord. See README.md for setup and config.
 
+Keep this file and README.md current: update them in the same change as any code they describe.
+
 ## Architecture
 
 - **Runtime**: Go 1.27 (stdlib `encoding/json/v2`), AWS Lambda (arm64, `provided.al2023`)
