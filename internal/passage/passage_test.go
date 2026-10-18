@@ -3,6 +3,7 @@ package passage_test
 import (
 	"encoding/json/v2"
 	"os"
+	"regexp"
 	"strings"
 	"testing"
 	"time"
@@ -50,6 +51,70 @@ func TestLoad(t *testing.T) {
 	// Higginson's edition folds the usual chapters 52-53 into LI.
 	if chapters != 51 {
 		t.Errorf("got %d Enchiridion chapters, want 51", chapters)
+	}
+}
+
+// TestPassagesClean guards the committed ingest output against the Gutenberg artifacts that have leaked before.
+func TestPassagesClean(t *testing.T) {
+	ps, err := passage.Load()
+	if err != nil {
+		t.Fatalf("Load() error: %v", err)
+	}
+
+	leaks := []struct {
+		name string
+		re   *regexp.Regexp
+	}{
+		{name: "footnote marker", re: regexp.MustCompile(`\[[A-Z]\]|\[\d+\]`)},
+		{name: "empty brackets", re: regexp.MustCompile(`\[\s*\]`)},
+		{name: "greek or illustration tag", re: regexp.MustCompile(`(?i)\[(?:greek|illustration)`)},
+		{name: "transcriber plus mark", re: regexp.MustCompile(`\+`)},
+		{name: "cross-reference", re: regexp.MustCompile(`\((?:See\s+|Epictetus,\s+)?[ivxl]+\.\s+\d`)},
+		{name: "translator note", re: regexp.MustCompile(`omitted\s+in\s+the\s+translation`)},
+		{name: "footnote citation paragraph", re: regexp.MustCompile(`(?m)^(?:See [A-Z]|From the Apologia)`)},
+		{name: "italics underscore", re: regexp.MustCompile(`_`)},
+		{name: "gutenberg boilerplate", re: regexp.MustCompile(`(?i)gutenberg`)},
+		{name: "section number left on text", re: regexp.MustCompile(`^\d+\.\s`)},
+		{name: "unnormalized whitespace", re: regexp.MustCompile(`^\s|\s$|  |\t|\n{3,}|[^\n]\n[^\n]`)},
+	}
+	for _, p := range ps {
+		for _, l := range leaks {
+			if loc := l.re.FindStringIndex(p.Text); loc != nil {
+				start := max(loc[0]-30, 0)
+				t.Errorf("%s: %s near %q", p.ID, l.name, p.Text[start:min(loc[1]+30, len(p.Text))])
+			}
+		}
+	}
+
+	// Passages that were truncated or polluted by past ingest bugs.
+	byID := map[string]string{}
+	for _, p := range ps {
+		byID[p.ID] = p.Text
+	}
+	spots := []struct {
+		id, has string
+		suffix  bool
+	}{
+		{id: "meditations-1.1-4", has: "the government of my temper.\n\nFrom the reputation and remembrance of my father"},
+		{id: "meditations-5.31", has: `"Never has wronged a man in deed or word."`},
+		{id: "meditations-11.6", has: `"Life's harvest reap like the wheat's fruitful ear."`},
+		{id: "meditations-7.45", has: "before the baseness [of deserting his post].", suffix: true},
+		{id: "meditations-8.57", has: "its rays are called Extensions because they are extended."},
+		{id: "meditations-10.23", has: "as in a shepherd's fold on a mountain.", suffix: true},
+		{id: "meditations-4.20", has: "a flower, a shrub?", suffix: true},
+		{id: "meditations-12.36", has: "for he also who releases thee is satisfied.", suffix: true},
+		{id: "enchiridion-51", has: "but hurt me they cannot.”", suffix: true},
+	}
+	for _, s := range spots {
+		text, ok := byID[s.id]
+		switch {
+		case !ok:
+			t.Errorf("%s missing", s.id)
+		case s.suffix && !strings.HasSuffix(text, s.has):
+			t.Errorf("%s should end with %q, ends %q", s.id, s.has, text[max(len(text)-60, 0):])
+		case !s.suffix && !strings.Contains(text, s.has):
+			t.Errorf("%s should contain %q", s.id, s.has)
+		}
 	}
 }
 

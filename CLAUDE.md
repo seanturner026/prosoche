@@ -25,6 +25,8 @@ Keep this file and README.md current: update them in the same change as any code
 ## passages.json
 
 - Generated and committed. Never hand-edit; change `cmd/ingest` and run `just ingest`.
+- `TestPassagesClean` scans the committed output for every artifact that has leaked before. When you find a new one, add
+  a pattern (and a spot check on the affected passage) before fixing the regex.
 - Any change to passage count or order shifts which passage lands on which date. Mention it when it happens.
 - Sources are fixed: George Long's Meditations (Gutenberg #15877, not #2680, which is Casaubon) and Higginson's
   Enchiridion (#45109). No modern translations or other authors without asking.
